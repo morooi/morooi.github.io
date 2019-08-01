@@ -1,0 +1,15 @@
+# hexo robots.txt
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /2019/
+Allow: /2020/
+Allow: /tags/
+
+Disallow: /js/
+Disallow: /css/
+Disallow: /images/
+Disallow: /lib/
+Disallow: /file/
+
+Sitemap: https://morooi.cn/sitemap.xml
