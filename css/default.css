@@ -10346,12 +10346,12 @@ body > .section {
   padding-bottom: 0 !important;
 }
 .ml-1,
-.mx-1 {
+.mx-1,
+.article-licensing .licensing-meta .icons .icon {
   margin-left: 0.25rem !important;
 }
 .mr-1,
-.mx-1,
-.article-licensing .licensing-meta .icon {
+.mx-1 {
   margin-right: 0.25rem !important;
 }
 .ml-n1,
@@ -10909,7 +10909,7 @@ article.article .content .message.message-immersive .message-body {
 .article-licensing .licensing-title {
   line-height: 1.2;
 }
-.article-licensing .licensing-meta .icon {
+.article-licensing .licensing-meta .icons .icon {
   width: 1.2em;
   height: 1.2em;
   font-size: 1.2em;
