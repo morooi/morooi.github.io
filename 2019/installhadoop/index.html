@@ -9,7 +9,7 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
     
-        gtag('config', 'G-0T8JD2VS0K');</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">morooi&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">全部文章</a><a class="navbar-item" href="/categories">分类</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/morooi"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-03-26T12:49:49.000Z" title="2019/3/26 下午8:49:49">2019-03-26</time>发表</span><span class="level-item"><time dateTime="2021-01-06T10:32:53.373Z" title="2021/1/6 下午6:32:53">2021-01-06</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></span><span class="level-item">13 分钟读完 (大约1919个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">在 CentOS 7 中安装 Hadoop 与 HBase</h1><div class="content"><p>本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。</p>
+        gtag('config', 'G-0T8JD2VS0K');</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">morooi&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">全部文章</a><a class="navbar-item" href="/categories">分类</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/morooi"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-03-26T12:49:49.000Z" title="2019/3/26 下午8:49:49">2019-03-26</time>发表</span><span class="level-item"><time dateTime="2021-01-06T10:32:53.373Z" title="2021/1/6 下午6:32:53">2021-01-06</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></span><span class="level-item">13 分钟读完 (大约1919个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">在 CentOS 7 中安装 Hadoop 与 HBase</h1><div class="content"><p>本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。</p>
 <p>下载地址：</p>
 <ul>
 <li>VMware Workstation Pro 15：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1LO6DxDw71vecyfvsJXv1jA">https://pan.baidu.com/s/1LO6DxDw71vecyfvsJXv1jA</a> 提取码: 98kc </li>
@@ -25,7 +25,7 @@
 <li>第三部分：安装并配置 Hadoop（伪分布式模式）</li>
 <li>第四部分：安装并配置 HBase</li>
 </ul>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="第一部分：在VMware中安装CentOS"><a href="#第一部分：在VMware中安装CentOS" class="headerlink" title="第一部分：在VMware中安装CentOS"></a>第一部分：在 VMware 中安装 CentOS</h2><p>安装完成后使用 SSH 客户端连接到虚拟机。</p>
 <p>由于写此报告时已经安装完成，并没有将过程截图，此部分略。</p>
@@ -35,15 +35,18 @@
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl stop firewalld.service  <span class="comment">#停止firewall</span></span><br><span class="line">$ systemctl <span class="built_in">disable</span> firewalld.service    <span class="comment">#禁止firewall开机启动</span></span><br></pre></td></tr></tbody></table></figure></li>
 <li><p>关闭 selinux：</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/sysconfig/selinux</span><br></pre></td></tr></tbody></table></figure>
+
 <p> 修改 <code>SELINUX=enabled</code> 为 <code>SELINUX=disabled</code>，如图</p>
 <p> <img src="/2019/installhadoop/selinux.png" alt="关闭selinux"></p>
 </li>
 </ol>
 <h2 id="第二部分：安装Java，并配置环境变量"><a href="#第二部分：安装Java，并配置环境变量" class="headerlink" title="第二部分：安装Java，并配置环境变量"></a>第二部分：安装 Java，并配置环境变量</h2><h3 id="安装Java"><a href="#安装Java" class="headerlink" title="安装Java"></a>安装 Java</h3><p>进入实验目录，这里选择在 <code>/opt/app</code> 目录下，下载 Java SDK 安装包</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /opt/app</span><br><span class="line">$ wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz</span><br></pre></td></tr></tbody></table></figure>
+
 <p>使用如下命令解压：<code>tar zxvf ./jdk-8u201-linux-x64.tar.gz</code>，得到目录 <code>/opt/app/jdk1.8.0_201</code>。</p>
 <h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>修改配置文件，执行 <code>vim /etc/profile</code>，在尾部添加</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="string">"/opt/app/jdk1.8.0_201"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p>如图</p>
 <p><img src="/2019/installhadoop/JAVA_HOME.png" alt="添加JAVA环境变量"></p>
 <p>修改完毕后，执行命令 <code>source /etc/profile</code> 使其生效。</p>
@@ -51,9 +54,11 @@
 <p><img src="/2019/installhadoop/java_version.png" alt="安装Java成功"></p>
 <h2 id="第三部分：安装并配置Hadoop（伪分布式模式）"><a href="#第三部分：安装并配置Hadoop（伪分布式模式）" class="headerlink" title="第三部分：安装并配置Hadoop（伪分布式模式）"></a>第三部分：安装并配置 Hadoop（伪分布式模式）</h2><h3 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装 Hadoop</h3><p>下载 Hadoop 2.9.2 安装包</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.9.2/hadoop-2.9.2.tar.gz</span><br></pre></td></tr></tbody></table></figure>
+
 <p>使用如下命令解压：<code>tar zxvf ./hadoop-2.9.2.tar.gz</code>，得到目录 <code>/opt/app/hadoop-2.9.2</code>。</p>
 <h3 id="添加环境变量-1"><a href="#添加环境变量-1" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>修改配置文件，执行 <code>vim /etc/profile</code>，在尾部添加</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HADOOP_HOME=<span class="string">"/opt/app/hadoop-2.9.2"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$HADOOP_HOME</span>/bin:<span class="variable">$HADOOP_HOME</span>/sbin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p>如图</p>
 <p><img src="/2019/installhadoop/HADOOP_HOME.png" alt="添加Hadoop环境变量"></p>
 <p>修改完毕后，执行 <code>source /etc/profile</code> 使其生效。</p>
@@ -63,14 +68,17 @@
 <li><p><strong>修改 <code>hadoop-env.sh</code></strong></p>
 <p> 执行命令</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hadoop-2.9.2/etc/hadoop/hadoop-env.sh</span><br></pre></td></tr></tbody></table></figure>
+
 <p> 修改文件中的 <code>JAVA_HOME</code> 参数为 Java 安装路径，结果如图</p>
 <p> <img src="/2019/installhadoop/hadoop-env.png" alt="配置hadoop-env.sh"></p>
 </li>
 <li><p><strong>配置 <code>core-site.xml</code></strong></p>
 <p> 执行命令</p>
  <figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hadoop-2.9.2/etc/hadoop/core-site.xml</span><br></pre></td></tr></tbody></table></figure>
+
 <p> 添加如下配置</p>
  <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://192.168.29.127:8020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/opt/data/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p> 其中</p>
 <p> <code>fs.defaultFS</code> 参数配置的是 HDFS 的地址，<code>192.168.29.127</code> 为本虚拟机 IP 地址。</p>
 <p> <code>hadoop.tmp.dir</code> 参数配置的是 Hadoop 临时目录，这里设置为 <code>/opt/data/tmp</code>，并手动创建此目录。</p>
@@ -79,8 +87,10 @@
 <li><p><strong>配置 <code>hdfs-site.xml</code></strong></p>
 <p> 执行命令</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hadoop-2.9.2/etc/hadoop/hdfs-site.xml</span><br></pre></td></tr></tbody></table></figure>
+
 <p> 添加如下配置</p>
  <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p> <code>dfs.replication</code> 参数配置的是 HDFS 存储时的备份数量，因为这里是伪分布式环境只有一个节点，所以这里设置为 1。</p>
 <p> <img src="/2019/installhadoop/hdfs-site.png" alt="配置hdfs-site.xml"></p>
 </li>
@@ -92,16 +102,20 @@
 <p> 默认没有 <code>mapred-site.xml</code> 文件，从 <code>mapred-site.xml.template</code> 模板文件复制生成 <code>mapred-site.xml</code>。</p>
 <p> 在 Hadoop 目录下执行命令</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cp etc/hadoop/mapred-site.xml.template etc/hadoop/mapred-site.xml</span><br></pre></td></tr></tbody></table></figure>
+
 <p> 打开 <code>mapred-site.xml</code>，添加如下配置</p>
  <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p> 此处设置 <code>mapreduce.framework.name</code> 参数指定 mapreduce 运行在 yarn 框架上。</p>
 <p> <img src="/2019/installhadoop/mapred-site.png" alt="配置mapred-site.xml"></p>
 </li>
 <li><p><strong>配置 <code>yarn-site.xml</code></strong></p>
 <p> 执行命令</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hadoop-2.9.2/etc/hadoop/yarn-site.xml</span><br></pre></td></tr></tbody></table></figure>
+
 <p> 添加如下配置</p>
  <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>192.168.29.127<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p> <code>yarn.nodemanager.aux-services</code> 配置了 yarn 的默认混洗方式，选择为 mapreduce 的默认混洗算法。</p>
 <p> <code>yarn.resourcemanager.hostname</code> 指定了 Resourcemanager 运行在哪个节点上，此处为本虚拟机 IP。</p>
 <p> <img src="/2019/installhadoop/yarn-site.png" alt="配置yarn-site.xml"></p>
@@ -116,14 +130,14 @@
 <li><p>在本机上生成公钥</p>
 <p> 执行命令</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa</span><br></pre></td></tr></tbody></table></figure>
+
 <p> 一路回车，都设置为默认值，然后再当前用户的目录下的<code>.ssh</code> 目录中会生成公钥文件 <code>id_rsa.pub</code> 和私钥文件 <code>id_rsa</code>。</p>
 <p> <img src="/2019/installhadoop/ssh.png" alt=".ssh"></p>
 </li>
 <li><p>分发公钥</p>
- <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-copy-id 192.168.29.127 <span class="comment">## 后面填写目的地址，此处是本机IP</span></span><br></pre></td></tr></tbody></table></figure>
-<p>至此，开启和关闭 Hadoop 服务都无需输入密码。</p>
-</li>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-copy-id 192.168.29.127 <span class="comment">## 后面填写目的地址，此处是本机IP</span></span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
+<p>至此，开启和关闭 Hadoop 服务都无需输入密码。</p>
 <h3 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动 Hadoop</h3><p>在 Hadoop 目录下执行命令 <code>sbin/start-all.sh</code>，开始启动 Hadoop</p>
 <p><img src="/2019/installhadoop/start-all.png" alt="启动Hadoop"></p>
 <p>运行命令 <code>jps</code> 可以看到服务均开始运行</p>
@@ -133,11 +147,14 @@
 <h3 id="Hadoop指定SSH连接的端口号"><a href="#Hadoop指定SSH连接的端口号" class="headerlink" title="Hadoop指定SSH连接的端口号"></a>Hadoop 指定 SSH 连接的端口号</h3><p>当因为某些原因自定义 <code>SSH</code> 端口号的时候，使用以下方法告诉 Hadoop 你的 <code>SSH</code> 端口号。</p>
 <p>编辑 Hadoop 目录下 <code>/etc/hadoop/hadoop-env.sh</code>，添加</p>
 <figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HADOOP_SSH_OPTS=<span class="string">"-p xxx"</span> //xxx为自定义的SSH端口号</span><br></pre></td></tr></tbody></table></figure>
+
 <h2 id="第四部分：安装并配置HBase"><a href="#第四部分：安装并配置HBase" class="headerlink" title="第四部分：安装并配置HBase"></a>第四部分：安装并配置 HBase</h2><h3 id="安装HBase"><a href="#安装HBase" class="headerlink" title="安装HBase"></a>安装 HBase</h3><p>下载 HBase 1.4.9 安装包</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://mirrors.tuna.tsinghua.edu.cn/apache/hbase/1.4.9/hbase-1.4.9-bin.tar.gz</span><br></pre></td></tr></tbody></table></figure>
+
 <p>使用如下命令解压：<code>tar zxvf hbase-1.4.9-bin.tar.gz</code>，得到目录 <code>/opt/app/hbase-1.4.9</code>。</p>
 <h3 id="添加环境变量-2"><a href="#添加环境变量-2" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>修改配置文件，执行 <code>vim /etc/profile</code>，在尾部添加</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HBASE_HOME=/opt/app/hbase-1.4.9</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$HBASE_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p>如图</p>
 <p><img src="/2019/installhadoop/HBASE_HOME.png" alt="添加HBASE环境变量"></p>
 <p>修改完毕后，执行 <code>source /etc/profile</code> 使其生效。</p>
@@ -147,8 +164,10 @@
 <li><p><strong>配置 <code>hbase-site.xml</code></strong></p>
 <p> 执行命令</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hbase-1.4.9/conf/hbase-site.xml</span><br></pre></td></tr></tbody></table></figure>
+
 <p> 添加如下配置</p>
  <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://192.168.29.127:8020/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/opt/data/hbase/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p> <code>hbase.rootdir</code> 配置的这个目录是 region server 的共享目录，用来持久化 HBase。</p>
 <p> <code>hbase.tmp.dir</code> 指定了 HBase 的临时目录。</p>
 <p> <code>hbase.cluster.distributed</code> 配置 HBase 的运行模式，false 是单机模式，true 是分布式模式。</p>
@@ -157,8 +176,10 @@
 <li><p><strong>配置 <code>hbase-env.sh</code></strong></p>
 <p> 执行命令</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hbase-1.4.9/conf/hbase-env.sh</span><br></pre></td></tr></tbody></table></figure>
+
 <p> 添加如下配置</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/opt/app/jdk1.8.0_201</span><br><span class="line"><span class="built_in">export</span> HADOOP_HOME=/opt/app/hadoop-2.9.2</span><br><span class="line"><span class="built_in">export</span> HBASE_HOME=/opt/app/hbase-1.4.9</span><br><span class="line"><span class="built_in">export</span> HBASE_CLASSPATH=/opt/app/hadoop-2.9.2/etc/hadoop</span><br></pre></td></tr></tbody></table></figure>
+
 <p> <img src="/2019/installhadoop/HBase-env.png" alt="Hbase-env"></p>
 </li>
 </ol>

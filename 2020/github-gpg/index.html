@@ -9,38 +9,44 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
     
-        gtag('config', 'G-0T8JD2VS0K');</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">morooi&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">全部文章</a><a class="navbar-item" href="/categories">分类</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/morooi"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-03-12T17:21:25.000Z" title="2020/3/13 上午1:21:25">2020-03-13</time>发表</span><span class="level-item"><time dateTime="2021-01-06T10:32:44.503Z" title="2021/1/6 下午6:32:44">2021-01-06</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a></span><span class="level-item">5 分钟读完 (大约681个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">在 macOS 中使用 GPG 签名提交至 Github</h1><div class="content"><p>在 Github 显示的 commit 中发现有一个绿色的 “Verified” 小标记，于是尝试实现。</p>
+        gtag('config', 'G-0T8JD2VS0K');</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">morooi&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">全部文章</a><a class="navbar-item" href="/categories">分类</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/morooi"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2020-03-12T17:21:25.000Z" title="2020/3/13 上午1:21:25">2020-03-13</time>发表</span><span class="level-item"><time dateTime="2021-01-06T10:32:44.503Z" title="2021/1/6 下午6:32:44">2021-01-06</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E8%AE%B0%E5%BD%95/">记录</a></span><span class="level-item">5 分钟读完 (大约681个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">在 macOS 中使用 GPG 签名提交至 Github</h1><div class="content"><p>在 Github 显示的 commit 中发现有一个绿色的 “Verified” 小标记，于是尝试实现。</p>
 <p>使用 GPG 在本地签名 commit，GitHub 可以验证这些签名，以便其他人知道提交来自可信的来源。</p>
 <h2 id="安装-GPG"><a href="#安装-GPG" class="headerlink" title="安装 GPG"></a>安装 GPG</h2><p>macOS 下，使用 homebrew 进行安装</p>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> brew install gpg</span></span><br></pre></td></tr></tbody></table></figure>
 <p>…</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="生成-GPG-密钥对"><a href="#生成-GPG-密钥对" class="headerlink" title="生成 GPG 密钥对"></a>生成 GPG 密钥对</h2><ul>
 <li>如果使用的是 2.1.17 或更高版本，使用以下命令生成 GPG 密钥对 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gpg --full-generate-key</span></span><br></pre></td></tr></tbody></table></figure></li>
-<li>如果使用的不是 2.1.17 或更高版本，可使用以下命令生成 GPG 密钥对 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gpg --default-new-key-algo rsa4096 --gen-key</span></span><br></pre></td></tr></tbody></table></figure>
-加密方式默认选择: <code>RSA and DSA</code></li>
+<li>如果使用的不是 2.1.17 或更高版本，可使用以下命令生成 GPG 密钥对 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gpg --default-new-key-algo rsa4096 --gen-key</span></span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
+<p>加密方式默认选择: <code>RSA and DSA</code></p>
 <p>输入所需的密钥长度: <code>4096</code></p>
 <p>有效时长：按需指定</p>
 <p>用户信息这一步需要输入 GitHub 帐户中<span style="color: red">经过验证的电子邮件地址</span>。</p>
 <p>输入自定义的安全密码（界面可能会是乱码，不影响密码的输入）</p>
 <h2 id="查看并导出生成的密钥对"><a href="#查看并导出生成的密钥对" class="headerlink" title="查看并导出生成的密钥对"></a>查看并导出生成的密钥对</h2><p>使用命令</p>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gpg --list-secret-keys --keyid-format LONG</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p>从 GPG 密钥列表中复制想要使用的 GPG 密钥 ID。 在此例中，GPG 密钥 ID 是 <code>3AA5C34371567BD2</code>：</p>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gpg --list-secret-keys --keyid-format LONG</span></span><br><span class="line">/Users/hubot/.gnupg/secring.gpg</span><br><span class="line">------------------------------------</span><br><span class="line">sec   4096R/3AA5C34371567BD2 2016-03-10 [expires: 2017-03-10]</span><br><span class="line">uid                          Hubot </span><br><span class="line">ssb   4096R/42B317FD4BA89E7A 2016-03-10</span><br></pre></td></tr></tbody></table></figure>
+
 <p>导出要使用的密钥对，以此密钥为例</p>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --armor --export 3AA5C34371567BD2</span><br></pre></td></tr></tbody></table></figure>
+
 <p>复制 GPG 密钥</p>
 <p>从 <code>-----BEGIN PGP PUBLIC KEY BLOCK-----</code> 开始<br>到 <code>-----END PGP PUBLIC KEY BLOCK-----</code> 结束</p>
 <h2 id="添加密钥至-Github"><a href="#添加密钥至-Github" class="headerlink" title="添加密钥至 Github"></a>添加密钥至 Github</h2><p>在 Github 的设置中找到 SSH and GPG keys 选项，或点击链接：<a target="_blank" rel="noopener" href="https://github.com/settings/keys">https://github.com/settings/keys</a></p>
 <p>单击 New GPG key（新 GPG 密钥），然后粘贴上一步中复制的密钥</p>
 <h2 id="使用密钥"><a href="#使用密钥" class="headerlink" title="使用密钥"></a>使用密钥</h2><p>在 Git 中设置 GPG 签名密钥，记得替换为自己的 GPG 密钥 ID</p>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.signingkey 3AA5C34371567BD2</span><br></pre></td></tr></tbody></table></figure>
+
 <p>为当前的单个项目配置密钥认证</p>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git config commit.gpgsign <span class="literal">true</span></span></span><br></pre></td></tr></tbody></table></figure>
+
 <p>为全部项目配置密钥认证</p>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git config --global commit.gpgsign <span class="literal">true</span></span></span><br></pre></td></tr></tbody></table></figure>
+
 <h2 id="错误解决"><a href="#错误解决" class="headerlink" title="错误解决"></a>错误解决</h2><p>使用 VS Code 提交代码时报错</p>
 <blockquote>
 <p>error: gpg failed to sign the data<br>fatal: failed to write commit object</p>
@@ -51,10 +57,13 @@
 </blockquote>
 <p><strong>需安装 pinentry-mac</strong></p>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> brew install pinentry-mac</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p>新建 <code>~/.gnupg/gpg-agent.conf</code>，加入</p>
 <figure class="highlight txt"><figcaption><span>~/.gnupg/gpg-agent.conf</span></figcaption><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pinentry-program /usr/local/bin/pinentry-mac</span><br></pre></td></tr></tbody></table></figure>
+
 <p>重载 gpg-agent 生效</p>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gpg-connect-agent reloadagent</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p>此时可以正常提交了，commit 时会弹出提示框，按照提示输入 Password 即可</p>
 <p><strong>参考链接</strong></p>
 <ul>

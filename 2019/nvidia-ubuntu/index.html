@@ -9,14 +9,14 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
     
-        gtag('config', 'G-0T8JD2VS0K');</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">morooi&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">全部文章</a><a class="navbar-item" href="/categories">分类</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/morooi"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-11-19T02:36:47.000Z" title="2019/11/19 上午10:36:47">2019-11-19</time>发表</span><span class="level-item"><time dateTime="2021-01-06T10:33:04.655Z" title="2021/1/6 下午6:33:04">2021-01-06</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Linux-%E4%BD%BF%E7%94%A8/">Linux 使用</a></span><span class="level-item">6 分钟读完 (大约880个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">给 Ubuntu 安装 NVIDIA 显卡驱动</h1><div class="content"><p>在 Ubuntu 18.04 上安装 NVIDIA 有三种方法：</p>
+        gtag('config', 'G-0T8JD2VS0K');</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">morooi&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">全部文章</a><a class="navbar-item" href="/categories">分类</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/morooi"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-11-19T02:36:47.000Z" title="2019/11/19 上午10:36:47">2019-11-19</time>发表</span><span class="level-item"><time dateTime="2021-01-06T10:33:04.655Z" title="2021/1/6 下午6:33:04">2021-01-06</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Linux-%E4%BD%BF%E7%94%A8/">Linux 使用</a></span><span class="level-item">6 分钟读完 (大约880个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">给 Ubuntu 安装 NVIDIA 显卡驱动</h1><div class="content"><p>在 Ubuntu 18.04 上安装 NVIDIA 有三种方法：</p>
 <ul>
 <li>使用标准 Ubuntu 仓库进行自动化安装</li>
 <li>使用 PPA 仓库进行自动化安装</li>
 <li>使用官方的 NVIDIA 驱动进行手动安装</li>
 </ul>
 <p>…</p>
-<a id="more"></a>
+<span id="more"></span>
 
 <h2 id="禁用Nouveau驱动"><a href="#禁用Nouveau驱动" class="headerlink" title="禁用Nouveau驱动"></a>禁用 Nouveau 驱动</h2><blockquote>
 <p>在安装之前首先要禁用 Nouveau 的驱动，可在安装系统前禁用，也可以在安装完成后禁用，看情况禁用即可。</p>
@@ -25,35 +25,45 @@
 <p><strong>安装 Linux 之前先关闭 Security Boot</strong>（不同主板引导界面中该选项的位置可能不太一致，但是大多数都是在 boot 选项中的）</p>
 <p>在进入 <code>grub</code> 安装界面的时候，在 <code>Install Ubuntu</code> 选项，按 <code>e</code>, 进入命令行模式，然后在 <code>quiet slash --</code> 后面 (也可能没有 –)，添加以下内容，然后按 F10 重新引导</p>
 <figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">acpi_osi</span>=linux nomodeset</span><br></pre></td></tr></tbody></table></figure>
+
 <p>修改上述选项可以在开机的时候，禁用 nouveau 显卡</p>
 <p>重新引导之后，可能会发现，安装的窗口有一部分屏幕下方，导致部分按钮无法点击。此时，按下 Alt+F7，鼠标会变成手指图标，即将窗口向上拖动即可。</p>
 <h3 id="在安装系统后禁用"><a href="#在安装系统后禁用" class="headerlink" title="在安装系统后禁用"></a>在安装系统后禁用</h3><p>摘自：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/59618999">https://zhuanlan.zhihu.com/p/59618999</a></p>
 <p>执行：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo bash -c <span class="string">"echo blacklist nouveau &gt; /etc/modprobe.d/blacklist-nouveau.conf"</span></span><br><span class="line">sudo bash -c <span class="string">"echo options nouveau modeset=0 &gt;&gt; /etc/modprobe.d/blacklist-nouveau.conf"</span></span><br><span class="line">sudo update-initramfs -u</span><br></pre></td></tr></tbody></table></figure>
+
 <p>执行完上面两条指令后，我们使用如下命令看看是否成功禁用了开源驱动：<code>cat /etc/modprobe.d/blacklist-nouveau.conf</code>。如果和下面一样，表示成功了。</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/modprobe.d/blacklist-nouveau.conf</span><br><span class="line">blacklist nouveau</span><br><span class="line">options nouveau modeset=0</span><br></pre></td></tr></tbody></table></figure>
+
 <p>重启系统，完成</p>
 <h2 id="安装NVIDIA驱动"><a href="#安装NVIDIA驱动" class="headerlink" title="安装NVIDIA驱动"></a>安装 NVIDIA 驱动</h2><h3 id="使用标准Ubuntu仓库进行自动化安装"><a href="#使用标准Ubuntu仓库进行自动化安装" class="headerlink" title="使用标准Ubuntu仓库进行自动化安装"></a>使用标准 Ubuntu 仓库进行自动化安装</h3><p>这种方法几乎是所有的示例中最简单的方法。首先，检测 NVIDIA 显卡型号和推荐的驱动程序。</p>
 <p>在命令行中输入如下命令：<code>ubuntu-drivers devices</code></p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ ubuntu-drivers devices</span><br><span class="line">== /sys/devices/pci0000:64/0000:64:00.0/0000:65:00.0 ==</span><br><span class="line">modalias : pci:v000010DEd00001E04sv00001458sd000037C4bc03sc00i00</span><br><span class="line">vendor   : NVIDIA Corporation</span><br><span class="line">driver   : nvidia-driver-435 - distro non-free recommended</span><br><span class="line">driver   : nvidia-driver-430 - distro non-free</span><br><span class="line">driver   : xserver-xorg-video-nouveau - distro free <span class="built_in">builtin</span></span><br></pre></td></tr></tbody></table></figure>
+
 <p>从输出结果可以看到，目前系统已连接 Nvidia 显卡，建议安装驱动程序是 nvidia-driver-435 版本的驱动。如果您同意该建议，请再次使用 Ubuntu 驱动程序命令来安装所有推荐的驱动程序。</p>
 <p>输入以下命令：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ubuntu-drivers autoinstall</span><br></pre></td></tr></tbody></table></figure>
+
 <p>一旦安装结束，重新启动系统，就完成了。</p>
 <h3 id="使用PPA仓库进行自动安装"><a href="#使用PPA仓库进行自动安装" class="headerlink" title="使用PPA仓库进行自动安装"></a>使用 PPA 仓库进行自动安装</h3><p>使用图形驱动程序 PPA 存储库允许我们安装 <code>NVIDIA beta</code> 驱动程序，但是这种方法存在不稳定的风险。</p>
 <p>首先，将 <code>ppa:graphics-drivers/ppa</code> 存储库添加到系统中：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository ppa:graphics-drivers/ppa</span><br><span class="line">$ sudo apt update</span><br></pre></td></tr></tbody></table></figure>
+
 <p>接下来，识别显卡模型和推荐的驱动程序：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ubuntu-drivers devices</span><br></pre></td></tr></tbody></table></figure>
+
 <p>输入以下命令：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install nvidia-440</span><br></pre></td></tr></tbody></table></figure>
+
 <p>一旦完成，即可重新启动系统。</p>
 <p>可以卸载该源：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo add-apt-repository -r ppa:graphics-drivers/ppa</span><br><span class="line">$ sudo apt update</span><br></pre></td></tr></tbody></table></figure>
+
 <h3 id="使用官方的NVIDIA驱动进行手动安装"><a href="#使用官方的NVIDIA驱动进行手动安装" class="headerlink" title="使用官方的NVIDIA驱动进行手动安装"></a>使用官方的 NVIDIA 驱动进行手动安装</h3><p>下载 NVIDIA 官方驱动，<a target="_blank" rel="noopener" href="https://www.nvidia.cn/Download/index.aspx?lang=cn">https://www.nvidia.cn/Download/index.aspx?lang=cn</a></p>
 <p>停止可视化桌面：<code>sudo telinit 3</code></p>
 <p>在相应路径下安装 NVIDIA 驱动:</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo bash ./NVIDIA-Linux-x86_64-440.31.run</span><br></pre></td></tr></tbody></table></figure>
+
 <p>按提示安装即可，重启完成！</p>
 </div><div class="article-licensing box"><div class="licensing-title"><p>给 Ubuntu 安装 NVIDIA 显卡驱动</p><p><a href="https://morooi.cn/2019/nvidia-ubuntu/">https://morooi.cn/2019/nvidia-ubuntu/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>SJ Zhou</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-11-19</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-01-06</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a class="icon" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a><a class="icon" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Linux/">Linux</a><a class="link-muted mr-2" rel="tag" href="/tags/%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8/">显卡驱动</a><a class="link-muted mr-2" rel="tag" href="/tags/Ubuntu/">Ubuntu</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2020/docker/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Docker 安装、使用记录</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/jupyter/"><span class="level-item">Jupyter Notebook 远程访问与后台静默运行</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
             id: "446e69ff92b688a17d90848fac2da1bf",
