@@ -200,6 +200,20 @@
   </url>
   
   <url>
+    <loc>https://morooi.cn/tags/Conda/</loc>
+    <lastmod>2021-08-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://morooi.cn/tags/Python/</loc>
+    <lastmod>2021-08-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://morooi.cn/tags/Docker/</loc>
     <lastmod>2021-08-01</lastmod>
     <changefreq>daily</changefreq>
@@ -221,14 +235,14 @@
   </url>
   
   <url>
-    <loc>https://morooi.cn/tags/Conda/</loc>
+    <loc>https://morooi.cn/tags/Java/</loc>
     <lastmod>2021-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://morooi.cn/tags/Python/</loc>
+    <loc>https://morooi.cn/tags/dockerfile-maven-plugin/</loc>
     <lastmod>2021-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -284,14 +298,14 @@
   </url>
   
   <url>
-    <loc>https://morooi.cn/tags/Java/</loc>
+    <loc>https://morooi.cn/tags/MapReduce/</loc>
     <lastmod>2021-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://morooi.cn/tags/dockerfile-maven-plugin/</loc>
+    <loc>https://morooi.cn/tags/wordcount/</loc>
     <lastmod>2021-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -320,20 +334,6 @@
   
   <url>
     <loc>https://morooi.cn/tags/Idea/</loc>
-    <lastmod>2021-08-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://morooi.cn/tags/MapReduce/</loc>
-    <lastmod>2021-08-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://morooi.cn/tags/wordcount/</loc>
     <lastmod>2021-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -440,14 +440,14 @@
 
   
   <url>
-    <loc>https://morooi.cn/categories/%E8%AE%B0%E5%BD%95/</loc>
+    <loc>https://morooi.cn/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2021-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://morooi.cn/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://morooi.cn/categories/%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2021-08-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
