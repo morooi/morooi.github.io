@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>在 CentOS 7 中安装 Hadoop 与 HBase - morooi&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="morooi&#039;s Blog"><meta name="msapplication-TileImage" content="img/touch-icon-iphone.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="morooi&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="144x144" href="img/touch-icon-iphone.png"><link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad.png"><meta name="description" content="本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。 下载地址：  VMware Workstation Pro"><meta property="og:type" content="blog"><meta property="og:title" content="在 CentOS 7 中安装 Hadoop 与 HBase"><meta property="og:url" content="https://morooi.cn/2019/installhadoop/"><meta property="og:site_name" content="morooi&#039;s Blog"><meta property="og:description" content="本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。 下载地址：  VMware Workstation Pro"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/selinux.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/JAVA_HOME.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/java_version.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/HADOOP_HOME.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/hadoop_version.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/hadoop-env.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/core-site.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/hdfs-site.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/format.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/mapred-site.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/yarn-site.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/ssh.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/start-all.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/jps.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/50070.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/HBASE_HOME.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/hbase_version.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/HBase_site.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/HBase-env.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/start-hbase.png"><meta property="og:image" content="https://morooi.cn/2019/installhadoop/jps_hbase.png"><meta property="article:published_time" content="2019-03-26T12:49:49.000Z"><meta property="article:modified_time" content="2021-01-06T10:32:53.373Z"><meta property="article:author" content="SJ Zhou"><meta property="article:tag" content="CentOS"><meta property="article:tag" content="Hadoop"><meta property="article:tag" content="HBase"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/2019/installhadoop/selinux.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://morooi.cn/2019/installhadoop/"},"headline":"在 CentOS 7 中安装 Hadoop 与 HBase","image":["https://morooi.cn/2019/installhadoop/selinux.png","https://morooi.cn/2019/installhadoop/JAVA_HOME.png","https://morooi.cn/2019/installhadoop/java_version.png","https://morooi.cn/2019/installhadoop/HADOOP_HOME.png","https://morooi.cn/2019/installhadoop/hadoop_version.png","https://morooi.cn/2019/installhadoop/hadoop-env.png","https://morooi.cn/2019/installhadoop/core-site.png","https://morooi.cn/2019/installhadoop/hdfs-site.png","https://morooi.cn/2019/installhadoop/format.png","https://morooi.cn/2019/installhadoop/mapred-site.png","https://morooi.cn/2019/installhadoop/yarn-site.png","https://morooi.cn/2019/installhadoop/ssh.png","https://morooi.cn/2019/installhadoop/start-all.png","https://morooi.cn/2019/installhadoop/jps.png","https://morooi.cn/2019/installhadoop/50070.png","https://morooi.cn/2019/installhadoop/HBASE_HOME.png","https://morooi.cn/2019/installhadoop/hbase_version.png","https://morooi.cn/2019/installhadoop/HBase_site.png","https://morooi.cn/2019/installhadoop/HBase-env.png","https://morooi.cn/2019/installhadoop/start-hbase.png","https://morooi.cn/2019/installhadoop/jps_hbase.png"],"datePublished":"2019-03-26T12:49:49.000Z","dateModified":"2021-01-06T10:32:53.373Z","author":{"@type":"Person","name":"SJ Zhou"},"publisher":{"@type":"Organization","name":"morooi's Blog","logo":{"@type":"ImageObject","url":{"text":"morooi's Blog"}}},"description":"本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。 下载地址：  VMware Workstation Pro"}</script><link rel="canonical" href="https://morooi.cn/2019/installhadoop/"><link rel="icon" href="/img/icon-32x32.png"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Lato:wght@400"><link rel="stylesheet" href="/css/default.css"><!--!--><script>var _hmt = _hmt || [];
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>在 CentOS 7 中安装 Hadoop 与 HBase - morooi&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="morooi&#039;s Blog"><meta name="msapplication-TileImage" content="img/touch-icon-iphone.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="morooi&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="144x144" href="img/touch-icon-iphone.png"><link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad.png"><meta name="description" content="本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。 下载地址：  VMware Workstation Pro"><meta property="og:type" content="blog"><meta property="og:title" content="在 CentOS 7 中安装 Hadoop 与 HBase"><meta property="og:url" content="https://morooi.cn/2019/installhadoop/"><meta property="og:site_name" content="morooi&#039;s Blog"><meta property="og:description" content="本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。 下载地址：  VMware Workstation Pro"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://morooi.cn/.cn//selinux.png"><meta property="og:image" content="https://morooi.cn/.cn//JAVA_HOME.png"><meta property="og:image" content="https://morooi.cn/.cn//java_version.png"><meta property="og:image" content="https://morooi.cn/.cn//HADOOP_HOME.png"><meta property="og:image" content="https://morooi.cn/.cn//hadoop_version.png"><meta property="og:image" content="https://morooi.cn/.cn//hadoop-env.png"><meta property="og:image" content="https://morooi.cn/.cn//core-site.png"><meta property="og:image" content="https://morooi.cn/.cn//hdfs-site.png"><meta property="og:image" content="https://morooi.cn/.cn//format.png"><meta property="og:image" content="https://morooi.cn/.cn//mapred-site.png"><meta property="og:image" content="https://morooi.cn/.cn//yarn-site.png"><meta property="og:image" content="https://morooi.cn/.cn//ssh.png"><meta property="og:image" content="https://morooi.cn/.cn//start-all.png"><meta property="og:image" content="https://morooi.cn/.cn//jps.png"><meta property="og:image" content="https://morooi.cn/.cn//50070.png"><meta property="og:image" content="https://morooi.cn/.cn//HBASE_HOME.png"><meta property="og:image" content="https://morooi.cn/.cn//hbase_version.png"><meta property="og:image" content="https://morooi.cn/.cn//HBase_site.png"><meta property="og:image" content="https://morooi.cn/.cn//HBase-env.png"><meta property="og:image" content="https://morooi.cn/.cn//start-hbase.png"><meta property="og:image" content="https://morooi.cn/.cn//jps_hbase.png"><meta property="article:published_time" content="2019-03-26T12:49:49.000Z"><meta property="article:modified_time" content="2021-01-06T10:32:53.000Z"><meta property="article:author" content="SJ Zhou"><meta property="article:tag" content="CentOS"><meta property="article:tag" content="Hadoop"><meta property="article:tag" content="HBase"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/.cn//selinux.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://morooi.cn/2019/installhadoop/"},"headline":"在 CentOS 7 中安装 Hadoop 与 HBase","image":["https://morooi.cn/.cn//selinux.png","https://morooi.cn/.cn//JAVA_HOME.png","https://morooi.cn/.cn//java_version.png","https://morooi.cn/.cn//HADOOP_HOME.png","https://morooi.cn/.cn//hadoop_version.png","https://morooi.cn/.cn//hadoop-env.png","https://morooi.cn/.cn//core-site.png","https://morooi.cn/.cn//hdfs-site.png","https://morooi.cn/.cn//format.png","https://morooi.cn/.cn//mapred-site.png","https://morooi.cn/.cn//yarn-site.png","https://morooi.cn/.cn//ssh.png","https://morooi.cn/.cn//start-all.png","https://morooi.cn/.cn//jps.png","https://morooi.cn/.cn//50070.png","https://morooi.cn/.cn//HBASE_HOME.png","https://morooi.cn/.cn//hbase_version.png","https://morooi.cn/.cn//HBase_site.png","https://morooi.cn/.cn//HBase-env.png","https://morooi.cn/.cn//start-hbase.png","https://morooi.cn/.cn//jps_hbase.png"],"datePublished":"2019-03-26T12:49:49.000Z","dateModified":"2021-01-06T10:32:53.000Z","author":{"@type":"Person","name":"SJ Zhou"},"publisher":{"@type":"Organization","name":"morooi's Blog","logo":{"@type":"ImageObject","url":{"text":"morooi's Blog"}}},"description":"本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。 下载地址：  VMware Workstation Pro"}</script><link rel="canonical" href="https://morooi.cn/2019/installhadoop/"><link rel="icon" href="/img/icon-32x32.png"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Lato:wght@400"><link rel="stylesheet" href="/css/default.css"><!--!--><script>var _hmt = _hmt || [];
         (function() {
             var hm = document.createElement("script");
             hm.src = "//hm.baidu.com/hm.js?15cece15ce32e027e81c277a94bbd778";
@@ -9,7 +9,7 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
     
-        gtag('config', 'G-0T8JD2VS0K');</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">morooi&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">全部文章</a><a class="navbar-item" href="/categories">分类</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/morooi"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-03-26T12:49:49.000Z" title="2019/3/26 下午8:49:49">2019-03-26</time>发表</span><span class="level-item"><time dateTime="2021-01-06T10:32:53.373Z" title="2021/1/6 下午6:32:53">2021-01-06</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></span><span class="level-item">13 分钟读完 (大约1919个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">在 CentOS 7 中安装 Hadoop 与 HBase</h1><div class="content"><p>本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。</p>
+        gtag('config', 'G-0T8JD2VS0K');</script><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">morooi&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">全部文章</a><a class="navbar-item" href="/categories">分类</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/morooi"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-03-26T12:49:49.000Z" title="2019/3/26 下午8:49:49">2019-03-26</time>发表</span><span class="level-item"><time dateTime="2021-01-06T10:32:53.000Z" title="2021/1/6 下午6:32:53">2021-01-06</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></span><span class="level-item">13 分钟读完 (大约1919个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">在 CentOS 7 中安装 Hadoop 与 HBase</h1><div class="content"><p>本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。</p>
 <p>下载地址：</p>
 <ul>
 <li>VMware Workstation Pro 15：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1LO6DxDw71vecyfvsJXv1jA">https://pan.baidu.com/s/1LO6DxDw71vecyfvsJXv1jA</a> 提取码: 98kc </li>
@@ -37,7 +37,7 @@
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/sysconfig/selinux</span><br></pre></td></tr></tbody></table></figure>
 
 <p> 修改 <code>SELINUX=enabled</code> 为 <code>SELINUX=disabled</code>，如图</p>
-<p> <img src="/2019/installhadoop/selinux.png" alt="关闭selinux"></p>
+<p> <img src="/.cn//selinux.png" alt="关闭selinux"></p>
 </li>
 </ol>
 <h2 id="第二部分：安装Java，并配置环境变量"><a href="#第二部分：安装Java，并配置环境变量" class="headerlink" title="第二部分：安装Java，并配置环境变量"></a>第二部分：安装 Java，并配置环境变量</h2><h3 id="安装Java"><a href="#安装Java" class="headerlink" title="安装Java"></a>安装 Java</h3><p>进入实验目录，这里选择在 <code>/opt/app</code> 目录下，下载 Java SDK 安装包</p>
@@ -48,10 +48,10 @@
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="string">"/opt/app/jdk1.8.0_201"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>如图</p>
-<p><img src="/2019/installhadoop/JAVA_HOME.png" alt="添加JAVA环境变量"></p>
+<p><img src="/.cn//JAVA_HOME.png" alt="添加JAVA环境变量"></p>
 <p>修改完毕后，执行命令 <code>source /etc/profile</code> 使其生效。</p>
 <p>执行命令 <code>java -version</code>，看到下图，即为安装成功</p>
-<p><img src="/2019/installhadoop/java_version.png" alt="安装Java成功"></p>
+<p><img src="/.cn//java_version.png" alt="安装Java成功"></p>
 <h2 id="第三部分：安装并配置Hadoop（伪分布式模式）"><a href="#第三部分：安装并配置Hadoop（伪分布式模式）" class="headerlink" title="第三部分：安装并配置Hadoop（伪分布式模式）"></a>第三部分：安装并配置 Hadoop（伪分布式模式）</h2><h3 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装 Hadoop</h3><p>下载 Hadoop 2.9.2 安装包</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.9.2/hadoop-2.9.2.tar.gz</span><br></pre></td></tr></tbody></table></figure>
 
@@ -60,17 +60,17 @@
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HADOOP_HOME=<span class="string">"/opt/app/hadoop-2.9.2"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$HADOOP_HOME</span>/bin:<span class="variable">$HADOOP_HOME</span>/sbin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>如图</p>
-<p><img src="/2019/installhadoop/HADOOP_HOME.png" alt="添加Hadoop环境变量"></p>
+<p><img src="/.cn//HADOOP_HOME.png" alt="添加Hadoop环境变量"></p>
 <p>修改完毕后，执行 <code>source /etc/profile</code> 使其生效。</p>
 <p>执行 <code>hadoop version</code>，看到下图，即为安装成功</p>
-<p><img src="/2019/installhadoop/hadoop_version.png" alt="安装Hadoop成功"></p>
+<p><img src="/.cn//hadoop_version.png" alt="安装Hadoop成功"></p>
 <h3 id="配置Hadoop"><a href="#配置Hadoop" class="headerlink" title="配置Hadoop"></a>配置 Hadoop</h3><ol>
 <li><p><strong>修改 <code>hadoop-env.sh</code></strong></p>
 <p> 执行命令</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hadoop-2.9.2/etc/hadoop/hadoop-env.sh</span><br></pre></td></tr></tbody></table></figure>
 
 <p> 修改文件中的 <code>JAVA_HOME</code> 参数为 Java 安装路径，结果如图</p>
-<p> <img src="/2019/installhadoop/hadoop-env.png" alt="配置hadoop-env.sh"></p>
+<p> <img src="/.cn//hadoop-env.png" alt="配置hadoop-env.sh"></p>
 </li>
 <li><p><strong>配置 <code>core-site.xml</code></strong></p>
 <p> 执行命令</p>
@@ -82,7 +82,7 @@
 <p> 其中</p>
 <p> <code>fs.defaultFS</code> 参数配置的是 HDFS 的地址，<code>192.168.29.127</code> 为本虚拟机 IP 地址。</p>
 <p> <code>hadoop.tmp.dir</code> 参数配置的是 Hadoop 临时目录，这里设置为 <code>/opt/data/tmp</code>，并手动创建此目录。</p>
-<p> <img src="/2019/installhadoop/core-site.png" alt="配置core-site.xml"></p>
+<p> <img src="/.cn//core-site.png" alt="配置core-site.xml"></p>
 </li>
 <li><p><strong>配置 <code>hdfs-site.xml</code></strong></p>
 <p> 执行命令</p>
@@ -92,11 +92,11 @@
  <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p> <code>dfs.replication</code> 参数配置的是 HDFS 存储时的备份数量，因为这里是伪分布式环境只有一个节点，所以这里设置为 1。</p>
-<p> <img src="/2019/installhadoop/hdfs-site.png" alt="配置hdfs-site.xml"></p>
+<p> <img src="/.cn//hdfs-site.png" alt="配置hdfs-site.xml"></p>
 </li>
 <li><p><strong>格式化 HDFS</strong></p>
 <p> 执行命令 <code>hdfs namenode -format</code>，当配置文件中设置的临时目录 <code>/opt/data/tmp</code> 下出现 <code>dfs</code> 文件夹时，说明格式化成功。</p>
-<p> <img src="/2019/installhadoop/format.png" alt="格式化过程"></p>
+<p> <img src="/.cn//format.png" alt="格式化过程"></p>
 </li>
 <li><p><strong>配置 <code>mapred-site.xml</code></strong></p>
 <p> 默认没有 <code>mapred-site.xml</code> 文件，从 <code>mapred-site.xml.template</code> 模板文件复制生成 <code>mapred-site.xml</code>。</p>
@@ -107,7 +107,7 @@
  <figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p> 此处设置 <code>mapreduce.framework.name</code> 参数指定 mapreduce 运行在 yarn 框架上。</p>
-<p> <img src="/2019/installhadoop/mapred-site.png" alt="配置mapred-site.xml"></p>
+<p> <img src="/.cn//mapred-site.png" alt="配置mapred-site.xml"></p>
 </li>
 <li><p><strong>配置 <code>yarn-site.xml</code></strong></p>
 <p> 执行命令</p>
@@ -118,7 +118,7 @@
 
 <p> <code>yarn.nodemanager.aux-services</code> 配置了 yarn 的默认混洗方式，选择为 mapreduce 的默认混洗算法。</p>
 <p> <code>yarn.resourcemanager.hostname</code> 指定了 Resourcemanager 运行在哪个节点上，此处为本虚拟机 IP。</p>
-<p> <img src="/2019/installhadoop/yarn-site.png" alt="配置yarn-site.xml"></p>
+<p> <img src="/.cn//yarn-site.png" alt="配置yarn-site.xml"></p>
 </li>
 </ol>
 <h3 id="设置免密登录"><a href="#设置免密登录" class="headerlink" title="设置免密登录"></a>设置免密登录</h3><blockquote>
@@ -132,18 +132,18 @@
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa</span><br></pre></td></tr></tbody></table></figure>
 
 <p> 一路回车，都设置为默认值，然后再当前用户的目录下的<code>.ssh</code> 目录中会生成公钥文件 <code>id_rsa.pub</code> 和私钥文件 <code>id_rsa</code>。</p>
-<p> <img src="/2019/installhadoop/ssh.png" alt=".ssh"></p>
+<p> <img src="/.cn//ssh.png" alt=".ssh"></p>
 </li>
 <li><p>分发公钥</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-copy-id 192.168.29.127 <span class="comment">## 后面填写目的地址，此处是本机IP</span></span><br></pre></td></tr></tbody></table></figure></li>
 </ol>
 <p>至此，开启和关闭 Hadoop 服务都无需输入密码。</p>
 <h3 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动 Hadoop</h3><p>在 Hadoop 目录下执行命令 <code>sbin/start-all.sh</code>，开始启动 Hadoop</p>
-<p><img src="/2019/installhadoop/start-all.png" alt="启动Hadoop"></p>
+<p><img src="/.cn//start-all.png" alt="启动Hadoop"></p>
 <p>运行命令 <code>jps</code> 可以看到服务均开始运行</p>
-<p><img src="/2019/installhadoop/jps.png" alt="jps"></p>
+<p><img src="/.cn//jps.png" alt="jps"></p>
 <p>进入 <a target="_blank" rel="noopener" href="http://192.168.27.127:50070/">http://192.168.27.127:50070</a> ，可以看到 Namenode 状态为 “active”。</p>
-<p><img src="/2019/installhadoop/50070.png" alt="active"></p>
+<p><img src="/.cn//50070.png" alt="active"></p>
 <h3 id="Hadoop指定SSH连接的端口号"><a href="#Hadoop指定SSH连接的端口号" class="headerlink" title="Hadoop指定SSH连接的端口号"></a>Hadoop 指定 SSH 连接的端口号</h3><p>当因为某些原因自定义 <code>SSH</code> 端口号的时候，使用以下方法告诉 Hadoop 你的 <code>SSH</code> 端口号。</p>
 <p>编辑 Hadoop 目录下 <code>/etc/hadoop/hadoop-env.sh</code>，添加</p>
 <figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HADOOP_SSH_OPTS=<span class="string">"-p xxx"</span> //xxx为自定义的SSH端口号</span><br></pre></td></tr></tbody></table></figure>
@@ -156,10 +156,10 @@
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HBASE_HOME=/opt/app/hbase-1.4.9</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$HBASE_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
 
 <p>如图</p>
-<p><img src="/2019/installhadoop/HBASE_HOME.png" alt="添加HBASE环境变量"></p>
+<p><img src="/.cn//HBASE_HOME.png" alt="添加HBASE环境变量"></p>
 <p>修改完毕后，执行 <code>source /etc/profile</code> 使其生效。</p>
 <p>执行 <code>hbase version</code>，看到下图，即为安装成功</p>
-<p><img src="/2019/installhadoop/hbase_version.png" alt="安装HBase成功"></p>
+<p><img src="/.cn//hbase_version.png" alt="安装HBase成功"></p>
 <h3 id="配置HBase"><a href="#配置HBase" class="headerlink" title="配置HBase"></a>配置 HBase</h3><ol>
 <li><p><strong>配置 <code>hbase-site.xml</code></strong></p>
 <p> 执行命令</p>
@@ -171,7 +171,7 @@
 <p> <code>hbase.rootdir</code> 配置的这个目录是 region server 的共享目录，用来持久化 HBase。</p>
 <p> <code>hbase.tmp.dir</code> 指定了 HBase 的临时目录。</p>
 <p> <code>hbase.cluster.distributed</code> 配置 HBase 的运行模式，false 是单机模式，true 是分布式模式。</p>
-<p> <img src="/2019/installhadoop/HBase_site.png" alt="Hbase-site"></p>
+<p> <img src="/.cn//HBase_site.png" alt="Hbase-site"></p>
 </li>
 <li><p><strong>配置 <code>hbase-env.sh</code></strong></p>
 <p> 执行命令</p>
@@ -180,19 +180,19 @@
 <p> 添加如下配置</p>
  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/opt/app/jdk1.8.0_201</span><br><span class="line"><span class="built_in">export</span> HADOOP_HOME=/opt/app/hadoop-2.9.2</span><br><span class="line"><span class="built_in">export</span> HBASE_HOME=/opt/app/hbase-1.4.9</span><br><span class="line"><span class="built_in">export</span> HBASE_CLASSPATH=/opt/app/hadoop-2.9.2/etc/hadoop</span><br></pre></td></tr></tbody></table></figure>
 
-<p> <img src="/2019/installhadoop/HBase-env.png" alt="Hbase-env"></p>
+<p> <img src="/.cn//HBase-env.png" alt="Hbase-env"></p>
 </li>
 </ol>
 <h3 id="启动HBase"><a href="#启动HBase" class="headerlink" title="启动HBase"></a>启动 HBase</h3><blockquote>
 <p>在启动 HBase 前先启动 Hadoop</p>
 </blockquote>
 <p>在 HBase 目录下执行命令 <code>bin/start-hbase.sh</code>，看到以下状态</p>
-<p><img src="/2019/installhadoop/start-hbase.png" alt="start-hbase"></p>
+<p><img src="/.cn//start-hbase.png" alt="start-hbase"></p>
 <p>查看 Java 进程：<code>jps</code></p>
-<p><img src="/2019/installhadoop/jps_hbase.png" alt="jps-hbase"></p>
+<p><img src="/.cn//jps_hbase.png" alt="jps-hbase"></p>
 <p>可以看到 <code>HMaster</code> 进程已经启动了。<br><br></p>
 <p><strong>至此，Hadoop 和 HBase 在 CentOS 7 上的安装已全部完成。</strong></p>
-</div><div class="article-licensing box"><div class="licensing-title"><p>在 CentOS 7 中安装 Hadoop 与 HBase</p><p><a href="https://morooi.cn/2019/installhadoop/">https://morooi.cn/2019/installhadoop/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>SJ Zhou</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-03-26</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-01-06</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/CentOS/">CentOS</a><a class="link-muted mr-2" rel="tag" href="/tags/Hadoop/">Hadoop</a><a class="link-muted mr-2" rel="tag" href="/tags/HBase/">HBase</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/startx/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">给 CentOS 7 minimal 安装图形界面</span></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+</div><div class="article-licensing box"><div class="licensing-title"><p>在 CentOS 7 中安装 Hadoop 与 HBase</p><p><a href="https://morooi.cn/2019/installhadoop/">https://morooi.cn/2019/installhadoop/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>SJ Zhou</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-03-26</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-01-06</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/CentOS/">CentOS</a><a class="link-muted mr-2" rel="tag" href="/tags/Hadoop/">Hadoop</a><a class="link-muted mr-2" rel="tag" href="/tags/HBase/">HBase</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/startx/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">给 CentOS 7 minimal 安装图形界面</span></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
             id: "d9b032eac31f9b94d67f03fb6d752816",
             repo: "morooi.github.io",
             owner: "morooi",
