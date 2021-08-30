@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Hadoop HDFS 实践（2）—— 使用 Java 编程操作 HDFS 文件 - morooi&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="morooi&#039;s Blog"><meta name="msapplication-TileImage" content="img/touch-icon-iphone.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="morooi&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="144x144" href="img/touch-icon-iphone.png"><link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad.png"><meta name="description" content="接着上一篇：Hadoop HDFS 实践（1）—— 安装 IDEA 并创建项目 本笔记主要内容如下：  查看 HDFS 中的文件列表 错误处理   在 HDFS 中创建新目录 上传文件到 HDFS 从 HDFS 下载文件到本地 从 HDFS 中删除文件 重命名 HDFS 中的文件或文件夹 流方式读取文件部分内容"><meta property="og:type" content="blog"><meta property="og:title" content="Hadoop HDFS 实践（2）—— 使用 Java 编程操作 HDFS 文件"><meta property="og:url" content="https://morooi.cn/2019/operatehadoop02/"><meta property="og:site_name" content="morooi&#039;s Blog"><meta property="og:description" content="接着上一篇：Hadoop HDFS 实践（1）—— 安装 IDEA 并创建项目 本笔记主要内容如下：  查看 HDFS 中的文件列表 错误处理   在 HDFS 中创建新目录 上传文件到 HDFS 从 HDFS 下载文件到本地 从 HDFS 中删除文件 重命名 HDFS 中的文件或文件夹 流方式读取文件部分内容"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://morooi.cn/2019/operatehadoop02/start.jpg"><meta property="og:image" content="https://morooi.cn/2019/operatehadoop02/log4j.png"><meta property="og:image" content="https://morooi.cn/2019/operatehadoop02/solvelog4j.png"><meta property="og:image" content="https://morooi.cn/2019/operatehadoop02/mkdir.png"><meta property="og:image" content="https://morooi.cn/2019/operatehadoop02/put.png"><meta property="og:image" content="https://morooi.cn/2019/operatehadoop02/get.png"><meta property="og:image" content="https://morooi.cn/2019/operatehadoop02/del.png"><meta property="og:image" content="https://morooi.cn/2019/operatehadoop02/rename.png"><meta property="og:image" content="https://morooi.cn/2019/operatehadoop02/stream.png"><meta property="og:image" content="https://morooi.cn/2019/operatehadoop02/over.jpg"><meta property="article:published_time" content="2019-03-30T13:26:42.000Z"><meta property="article:modified_time" content="2021-01-06T10:33:11.000Z"><meta property="article:author" content="SJ Zhou"><meta property="article:tag" content="Java"><meta property="article:tag" content="Hadoop"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/2019/operatehadoop02/start.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://morooi.cn/2019/operatehadoop02/"},"headline":"Hadoop HDFS 实践（2）—— 使用 Java 编程操作 HDFS 文件","image":["https://morooi.cn/2019/operatehadoop02/start.jpg","https://morooi.cn/2019/operatehadoop02/log4j.png","https://morooi.cn/2019/operatehadoop02/solvelog4j.png","https://morooi.cn/2019/operatehadoop02/mkdir.png","https://morooi.cn/2019/operatehadoop02/put.png","https://morooi.cn/2019/operatehadoop02/get.png","https://morooi.cn/2019/operatehadoop02/del.png","https://morooi.cn/2019/operatehadoop02/rename.png","https://morooi.cn/2019/operatehadoop02/stream.png","https://morooi.cn/2019/operatehadoop02/over.jpg"],"datePublished":"2019-03-30T13:26:42.000Z","dateModified":"2021-01-06T10:33:11.000Z","author":{"@type":"Person","name":"SJ Zhou"},"publisher":{"@type":"Organization","name":"morooi's Blog","logo":{"@type":"ImageObject","url":{"text":"morooi's Blog"}}},"description":"接着上一篇：Hadoop HDFS 实践（1）—— 安装 IDEA 并创建项目 本笔记主要内容如下：  查看 HDFS 中的文件列表 错误处理   在 HDFS 中创建新目录 上传文件到 HDFS 从 HDFS 下载文件到本地 从 HDFS 中删除文件 重命名 HDFS 中的文件或文件夹 流方式读取文件部分内容"}</script><link rel="canonical" href="https://morooi.cn/2019/operatehadoop02/"><link rel="icon" href="/img/icon-32x32.png"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Lato:wght@400"><link rel="stylesheet" href="/css/default.css"><!--!--><script>var _hmt = _hmt || [];
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Hadoop HDFS 实践（2）—— 使用 Java 编程操作 HDFS 文件 - morooi&#039;s Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="morooi&#039;s Blog"><meta name="msapplication-TileImage" content="img/touch-icon-iphone.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="morooi&#039;s Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="144x144" href="img/touch-icon-iphone.png"><link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad.png"><meta name="description" content="接着上一篇：Hadoop HDFS 实践（1）—— 安装 IDEA 并创建项目 本笔记主要内容如下：  查看 HDFS 中的文件列表 错误处理   在 HDFS 中创建新目录 上传文件到 HDFS 从 HDFS 下载文件到本地 从 HDFS 中删除文件 重命名 HDFS 中的文件或文件夹 流方式读取文件部分内容"><meta property="og:type" content="blog"><meta property="og:title" content="Hadoop HDFS 实践（2）—— 使用 Java 编程操作 HDFS 文件"><meta property="og:url" content="https://morooi.cn/2019/operatehadoop02/"><meta property="og:site_name" content="morooi&#039;s Blog"><meta property="og:description" content="接着上一篇：Hadoop HDFS 实践（1）—— 安装 IDEA 并创建项目 本笔记主要内容如下：  查看 HDFS 中的文件列表 错误处理   在 HDFS 中创建新目录 上传文件到 HDFS 从 HDFS 下载文件到本地 从 HDFS 中删除文件 重命名 HDFS 中的文件或文件夹 流方式读取文件部分内容"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://morooi.cn/.cn//start.jpg"><meta property="og:image" content="https://morooi.cn/.cn//log4j.png"><meta property="og:image" content="https://morooi.cn/.cn//solvelog4j.png"><meta property="og:image" content="https://morooi.cn/.cn//mkdir.png"><meta property="og:image" content="https://morooi.cn/.cn//put.png"><meta property="og:image" content="https://morooi.cn/.cn//get.png"><meta property="og:image" content="https://morooi.cn/.cn//del.png"><meta property="og:image" content="https://morooi.cn/.cn//rename.png"><meta property="og:image" content="https://morooi.cn/.cn//stream.png"><meta property="og:image" content="https://morooi.cn/.cn//over.jpg"><meta property="article:published_time" content="2019-03-30T13:26:42.000Z"><meta property="article:modified_time" content="2021-01-06T10:33:11.000Z"><meta property="article:author" content="SJ Zhou"><meta property="article:tag" content="Java"><meta property="article:tag" content="Hadoop"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/.cn//start.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://morooi.cn/2019/operatehadoop02/"},"headline":"Hadoop HDFS 实践（2）—— 使用 Java 编程操作 HDFS 文件","image":["https://morooi.cn/.cn//start.jpg","https://morooi.cn/.cn//log4j.png","https://morooi.cn/.cn//solvelog4j.png","https://morooi.cn/.cn//mkdir.png","https://morooi.cn/.cn//put.png","https://morooi.cn/.cn//get.png","https://morooi.cn/.cn//del.png","https://morooi.cn/.cn//rename.png","https://morooi.cn/.cn//stream.png","https://morooi.cn/.cn//over.jpg"],"datePublished":"2019-03-30T13:26:42.000Z","dateModified":"2021-01-06T10:33:11.000Z","author":{"@type":"Person","name":"SJ Zhou"},"publisher":{"@type":"Organization","name":"morooi's Blog","logo":{"@type":"ImageObject","url":{"text":"morooi's Blog"}}},"description":"接着上一篇：Hadoop HDFS 实践（1）—— 安装 IDEA 并创建项目 本笔记主要内容如下：  查看 HDFS 中的文件列表 错误处理   在 HDFS 中创建新目录 上传文件到 HDFS 从 HDFS 下载文件到本地 从 HDFS 中删除文件 重命名 HDFS 中的文件或文件夹 流方式读取文件部分内容"}</script><link rel="canonical" href="https://morooi.cn/2019/operatehadoop02/"><link rel="icon" href="/img/icon-32x32.png"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Lato:wght@400"><link rel="stylesheet" href="/css/default.css"><!--!--><script>var _hmt = _hmt || [];
         (function() {
             var hm = document.createElement("script");
             hm.src = "//hm.baidu.com/hm.js?15cece15ce32e027e81c277a94bbd778";
@@ -23,7 +23,7 @@
 <li><a href="#%E9%87%8D%E5%91%BD%E5%90%8Dhdfs%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E6%88%96%E6%96%87%E4%BB%B6%E5%A4%B9">重命名 HDFS 中的文件或文件夹</a></li>
 <li><a href="#%E6%B5%81%E6%96%B9%E5%BC%8F%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E9%83%A8%E5%88%86%E5%86%85%E5%AE%B9">流方式读取文件部分内容</a></li>
 </ul>
-<p><img src="/2019/operatehadoop02/start.jpg" alt="怎么说"></p>
+<p><img src="/.cn//start.jpg" alt="怎么说"></p>
 <span id="more"></span>
 
 <h2 id="查看HDFS中的文件列表"><a href="#查看HDFS中的文件列表" class="headerlink" title="查看HDFS中的文件列表"></a>查看 HDFS 中的文件列表</h2><p>在项目目录 <code>~/src/main/java</code> 下创建一个类，命名为 <code>Ls.java</code>，写入代码</p>
@@ -39,13 +39,13 @@
 
 <p>可以看出这些文件是由 HBase 创建的，推测是之前初始化 HBase 的时候自动生成。</p>
 <h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>在初次运行时会出现如图所示报错，且不会有任何输出。</p>
-<p><img src="/2019/operatehadoop02/log4j.png" alt="log4j错误"></p>
+<p><img src="/.cn//log4j.png" alt="log4j错误"></p>
 <p>这是由于 log4j 没有配置日志记录的位置，需要配置 log4j.properties。</p>
 <p><strong>解决方法</strong></p>
 <p>在 <code>src</code> 文件夹下新建 <code>resources</code> 文件夹，并在里面新建文件 <code>log4j.properties</code>，在文件中输入以下内容</p>
 <figure class="highlight properties"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">hadoop.root.logger</span> = <span class="string">DEBUG, console</span></span><br><span class="line"><span class="meta">log4j.rootLogger</span> = <span class="string">DEBUG, console</span></span><br><span class="line"><span class="meta">log4j.appender.console</span> = <span class="string">org.apache.log4j.ConsoleAppender</span></span><br><span class="line"><span class="meta">log4j.appender.console.target</span> = <span class="string">System.out</span></span><br><span class="line"><span class="meta">log4j.appender.console.layout</span> = <span class="string">org.apache.log4j.PatternLayout</span></span><br><span class="line"><span class="meta">log4j.appender.console.layout.ConversionPattern</span> = <span class="string">%d{yy/MM/dd HH:mm:ss} %p %c{2}: %m%n</span></span><br></pre></td></tr></tbody></table></figure>
 
-<p><img src="/2019/operatehadoop02/solvelog4j.png" alt="解决log4j:WARN"></p>
+<p><img src="/.cn//solvelog4j.png" alt="解决log4j:WARN"></p>
 <p>重新运行代码，会有正常结果输出。</p>
 <h2 id="在HDFS中创建新目录"><a href="#在HDFS中创建新目录" class="headerlink" title="在HDFS中创建新目录"></a>在 HDFS 中创建新目录</h2><p>在 HDFS 中创建目录 /mkdir/a/b</p>
 <p>在项目目录 <code>~/src/main/java</code> 下创建一个类，命名为 <code>Mkdir.java</code>，写入代码</p>
@@ -58,7 +58,7 @@
 <p>使用 hdfs 命令验证</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hdfs dfs -ls /mkdir/a/b</span><br></pre></td></tr></tbody></table></figure>
 
-<p><img src="/2019/operatehadoop02/mkdir.png" alt="mkdir/a/b"></p>
+<p><img src="/.cn//mkdir.png" alt="mkdir/a/b"></p>
 <p>没有报不存在的错误，创建成功！</p>
 <h2 id="上传文件到HDFS"><a href="#上传文件到HDFS" class="headerlink" title="上传文件到HDFS"></a>上传文件到 HDFS</h2><p>在当前项目目录下新建测试文件，上传到 HDFS 中的 /mkdir</p>
 <p>先在项目目录下创建文件 <code>Hello_World.txt</code>，写入内容：<code>This is a test file.</code></p>
@@ -71,7 +71,7 @@
 <p>使用 hdfs 命令验证</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hdfs dfs -ls /mkdir</span><br></pre></td></tr></tbody></table></figure>
 
-<p><img src="/2019/operatehadoop02/put.png" alt="Hello_World.txt上传成功"></p>
+<p><img src="/.cn//put.png" alt="Hello_World.txt上传成功"></p>
 <p>可以看到文件已经成功上传！</p>
 <h2 id="从HDFS下载文件到本地"><a href="#从HDFS下载文件到本地" class="headerlink" title="从HDFS下载文件到本地"></a>从 HDFS 下载文件到本地</h2><p>把 HDFS 中的 /mkdir/Hello_World.txt 下载到指定目录下</p>
 <p>在项目目录 <code>~/src/main/java</code> 下创建一个类，命名为 <code>Get.java</code>，写入代码</p>
@@ -81,7 +81,7 @@
 <p>运行。</p>
 <p>完毕后可以看到在项目目录下多出文件 <code>Hello_World_2.txt</code>，打开后内容和之前填入的一致。</p>
 <p>下载成功！</p>
-<p><img src="/2019/operatehadoop02/get.png" alt="Hello_World_2.txt下载成功"></p>
+<p><img src="/.cn//get.png" alt="Hello_World_2.txt下载成功"></p>
 <h2 id="从HDFS中删除文件"><a href="#从HDFS中删除文件" class="headerlink" title="从HDFS中删除文件"></a>从 HDFS 中删除文件</h2><p>删除 HDFS 中的 /mkdir/Hello_World.txt 文件</p>
 <p>在项目目录 <code>~/src/main/java</code> 下创建一个类，命名为 <code>Del.java</code>，写入代码</p>
 <p>代码如下：</p>
@@ -93,7 +93,7 @@
 <p>使用 hdfs 命令验证</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hdfs dfs -ls /mkdir</span><br></pre></td></tr></tbody></table></figure>
 
-<p><img src="/2019/operatehadoop02/del.png" alt="删除成功"></p>
+<p><img src="/.cn//del.png" alt="删除成功"></p>
 <p>可以看到文件成功被删除！</p>
 <h2 id="重命名HDFS中的文件或文件夹"><a href="#重命名HDFS中的文件或文件夹" class="headerlink" title="重命名HDFS中的文件或文件夹"></a>重命名 HDFS 中的文件或文件夹</h2><p>把 HDFS 中的 /mkdir/a 重命名为 /mkdir/a_2</p>
 <p>在项目目录 <code>~/src/main/java</code> 下创建一个类，命名为 <code>Rename.java</code>，写入代码</p>
@@ -104,7 +104,7 @@
 <p>使用 hdfs 命令验证</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hdfs dfs -ls /mkdir</span><br></pre></td></tr></tbody></table></figure>
 
-<p><img src="/2019/operatehadoop02/rename.png" alt="重命名成功"></p>
+<p><img src="/.cn//rename.png" alt="重命名成功"></p>
 <p>重命名成功！</p>
 <h2 id="流方式读取文件部分内容"><a href="#流方式读取文件部分内容" class="headerlink" title="流方式读取文件部分内容"></a>流方式读取文件部分内容</h2><p>上传一个文本文件，然后使用流方式读取部分内容保存到当前项目目录</p>
 <p>首先创建一个文件 <code>New.txt</code>，内容为：</p>
@@ -119,8 +119,8 @@
 
 <p>运行</p>
 <p>可以看到项目目录下多出 <code>New.txt.part2</code> 文件，打开可以看到文件内容。</p>
-<p><img src="/2019/operatehadoop02/stream.png" alt="流方式读取文件部分内容"></p>
-<h2 id="全文完"><a href="#全文完" class="headerlink" title="全文完"></a>全文完</h2><p><img src="/2019/operatehadoop02/over.jpg"></p>
+<p><img src="/.cn//stream.png" alt="流方式读取文件部分内容"></p>
+<h2 id="全文完"><a href="#全文完" class="headerlink" title="全文完"></a>全文完</h2><p><img src="/.cn//over.jpg"></p>
 </div><div class="article-licensing box"><div class="licensing-title"><p>Hadoop HDFS 实践（2）—— 使用 Java 编程操作 HDFS 文件</p><p><a href="https://morooi.cn/2019/operatehadoop02/">https://morooi.cn/2019/operatehadoop02/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>SJ Zhou</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-03-30</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-01-06</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Java/">Java</a><a class="link-muted mr-2" rel="tag" href="/tags/Hadoop/">Hadoop</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/anaconda/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Conda 常用命令的整理</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2019/operatehadoop01/"><span class="level-item">Hadoop HDFS 实践（1）—— 安装 IDEA 并创建项目</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
             id: "3cbe9daff4a0e7fca8f4a017c7ae994f",
             repo: "morooi.github.io",
