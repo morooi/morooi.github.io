@@ -179,6 +179,13 @@
 
   
   <url>
+    <loc>https://morooi.cn/tags/Java/</loc>
+    <lastmod>2022-02-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://morooi.cn/tags/macOS/</loc>
     <lastmod>2022-02-09</lastmod>
     <changefreq>daily</changefreq>
@@ -186,7 +193,21 @@
   </url>
   
   <url>
-    <loc>https://morooi.cn/tags/Java/</loc>
+    <loc>https://morooi.cn/tags/Conda/</loc>
+    <lastmod>2022-02-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://morooi.cn/tags/Python/</loc>
+    <lastmod>2022-02-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://morooi.cn/tags/acme-sh/</loc>
     <lastmod>2022-02-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -221,41 +242,6 @@
   </url>
   
   <url>
-    <loc>https://morooi.cn/tags/acme-sh/</loc>
-    <lastmod>2022-02-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://morooi.cn/tags/Conda/</loc>
-    <lastmod>2022-02-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://morooi.cn/tags/Python/</loc>
-    <lastmod>2022-02-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://morooi.cn/tags/Hexo/</loc>
-    <lastmod>2022-02-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://morooi.cn/tags/Next/</loc>
-    <lastmod>2022-02-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://morooi.cn/tags/GPG/</loc>
     <lastmod>2022-02-09</lastmod>
     <changefreq>daily</changefreq>
@@ -271,6 +257,20 @@
   
   <url>
     <loc>https://morooi.cn/tags/Git/</loc>
+    <lastmod>2022-02-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://morooi.cn/tags/Hexo/</loc>
+    <lastmod>2022-02-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://morooi.cn/tags/Next/</loc>
     <lastmod>2022-02-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -340,14 +340,14 @@
   </url>
   
   <url>
-    <loc>https://morooi.cn/tags/RDD/</loc>
+    <loc>https://morooi.cn/tags/Spark/</loc>
     <lastmod>2022-02-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://morooi.cn/tags/Spark/</loc>
+    <loc>https://morooi.cn/tags/RDD/</loc>
     <lastmod>2022-02-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -433,14 +433,14 @@
 
   
   <url>
-    <loc>https://morooi.cn/categories/%E8%AE%B0%E5%BD%95/</loc>
+    <loc>https://morooi.cn/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-02-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://morooi.cn/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://morooi.cn/categories/%E8%AE%B0%E5%BD%95/</loc>
     <lastmod>2022-02-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
