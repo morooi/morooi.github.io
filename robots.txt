@@ -12,4 +12,4 @@ Disallow: /images/
 Disallow: /lib/
 Disallow: /file/
 
-Sitemap: https://morooi.cn/sitemap.xml
+Sitemap: https://morooi.com/sitemap.xml
