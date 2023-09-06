@@ -234,14 +234,14 @@
   </url>
   
   <url>
-    <loc>https://morooi.com/tags/Java/</loc>
+    <loc>https://morooi.com/tags/acme-sh/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://morooi.com/tags/acme-sh/</loc>
+    <loc>https://morooi.com/tags/Java/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -311,20 +311,6 @@
   </url>
   
   <url>
-    <loc>https://morooi.com/tags/Hexo/</loc>
-    <lastmod>2023-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://morooi.com/tags/Next/</loc>
-    <lastmod>2023-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://morooi.com/tags/Hadoop/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -353,20 +339,6 @@
   </url>
   
   <url>
-    <loc>https://morooi.com/tags/MapReduce/</loc>
-    <lastmod>2023-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://morooi.com/tags/wordcount/</loc>
-    <lastmod>2023-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://morooi.com/tags/Maven/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -388,7 +360,28 @@
   </url>
   
   <url>
-    <loc>https://morooi.com/tags/Spark/</loc>
+    <loc>https://morooi.com/tags/Hexo/</loc>
+    <lastmod>2023-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://morooi.com/tags/Next/</loc>
+    <lastmod>2023-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://morooi.com/tags/MapReduce/</loc>
+    <lastmod>2023-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://morooi.com/tags/wordcount/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -402,7 +395,21 @@
   </url>
   
   <url>
+    <loc>https://morooi.com/tags/Spark/</loc>
+    <lastmod>2023-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://morooi.com/tags/ECharts/</loc>
+    <lastmod>2023-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://morooi.com/tags/Tmux/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -416,7 +423,7 @@
   </url>
   
   <url>
-    <loc>https://morooi.com/tags/Tmux/</loc>
+    <loc>https://morooi.com/tags/zsh/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -466,13 +473,6 @@
   
   <url>
     <loc>https://morooi.com/tags/AdguardHome/</loc>
-    <lastmod>2023-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://morooi.com/tags/zsh/</loc>
     <lastmod>2023-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
