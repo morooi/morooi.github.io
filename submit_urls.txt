@@ -1,3 +1,4 @@
+https://morooi.com/2020/github-gpg/
 https://morooi.com/2020/Java-%E9%9D%A2%E8%AF%95/
 https://morooi.com/2020/tmux/
 https://morooi.com/2021/acme-sh/
@@ -7,4 +8,3 @@ https://morooi.com/2020/unblockneteasemusic/
 https://morooi.com/2020/%E6%90%AD%E5%BB%BADNS%E6%9C%8D%E5%8A%A1%E5%99%A8/
 https://morooi.com/2019/zsh/
 https://morooi.com/2019/startx/
-https://morooi.com/2019/ssh_nopassw/
