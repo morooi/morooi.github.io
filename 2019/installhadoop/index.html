@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>在 CentOS 7 中安装 Hadoop 与 HBase - morooi&#039;s Blog - morooi 的个人展示🍓</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="morooi&#039;s Blog - morooi 的个人展示🍓"><meta name="msapplication-TileImage" content="img/touch-icon-iphone.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="morooi&#039;s Blog - morooi 的个人展示🍓"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="apple-touch-icon" sizes="144x144" href="img/touch-icon-iphone.png"><link rel="apple-touch-icon" sizes="152x152" href="img/touch-icon-ipad.png"><meta name="description" content="本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。 下载地址：  VMware Workstation Pro"><meta property="og:type" content="blog"><meta property="og:title" content="在 CentOS 7 中安装 Hadoop 与 HBase"><meta property="og:url" content="https://morooi.com/2019/installhadoop/"><meta property="og:site_name" content="morooi&#039;s Blog - morooi 的个人展示🍓"><meta property="og:description" content="本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。 下载地址：  VMware Workstation Pro"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://morooi.com/.com//selinux.png"><meta property="og:image" content="https://morooi.com/.com//JAVA_HOME.png"><meta property="og:image" content="https://morooi.com/.com//java_version.png"><meta property="og:image" content="https://morooi.com/.com//HADOOP_HOME.png"><meta property="og:image" content="https://morooi.com/.com//hadoop_version.png"><meta property="og:image" content="https://morooi.com/.com//hadoop-env.png"><meta property="og:image" content="https://morooi.com/.com//core-site.png"><meta property="og:image" content="https://morooi.com/.com//hdfs-site.png"><meta property="og:image" content="https://morooi.com/.com//format.png"><meta property="og:image" content="https://morooi.com/.com//mapred-site.png"><meta property="og:image" content="https://morooi.com/.com//yarn-site.png"><meta property="og:image" content="https://morooi.com/.com//ssh.png"><meta property="og:image" content="https://morooi.com/.com//start-all.png"><meta property="og:image" content="https://morooi.com/.com//jps.png"><meta property="og:image" content="https://morooi.com/.com//50070.png"><meta property="og:image" content="https://morooi.com/.com//HBASE_HOME.png"><meta property="og:image" content="https://morooi.com/.com//hbase_version.png"><meta property="og:image" content="https://morooi.com/.com//HBase_site.png"><meta property="og:image" content="https://morooi.com/.com//HBase-env.png"><meta property="og:image" content="https://morooi.com/.com//start-hbase.png"><meta property="og:image" content="https://morooi.com/.com//jps_hbase.png"><meta property="article:published_time" content="2019-03-26T12:49:49.000Z"><meta property="article:modified_time" content="2021-01-06T10:32:53.000Z"><meta property="article:author" content="SJ Zhou"><meta property="article:tag" content="CentOS"><meta property="article:tag" content="Hadoop"><meta property="article:tag" content="HBase"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://morooi.com/.com//selinux.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://morooi.com/2019/installhadoop/"},"headline":"在 CentOS 7 中安装 Hadoop 与 HBase","image":["https://morooi.com/.com//selinux.png","https://morooi.com/.com//JAVA_HOME.png","https://morooi.com/.com//java_version.png","https://morooi.com/.com//HADOOP_HOME.png","https://morooi.com/.com//hadoop_version.png","https://morooi.com/.com//hadoop-env.png","https://morooi.com/.com//core-site.png","https://morooi.com/.com//hdfs-site.png","https://morooi.com/.com//format.png","https://morooi.com/.com//mapred-site.png","https://morooi.com/.com//yarn-site.png","https://morooi.com/.com//ssh.png","https://morooi.com/.com//start-all.png","https://morooi.com/.com//jps.png","https://morooi.com/.com//50070.png","https://morooi.com/.com//HBASE_HOME.png","https://morooi.com/.com//hbase_version.png","https://morooi.com/.com//HBase_site.png","https://morooi.com/.com//HBase-env.png","https://morooi.com/.com//start-hbase.png","https://morooi.com/.com//jps_hbase.png"],"datePublished":"2019-03-26T12:49:49.000Z","dateModified":"2021-01-06T10:32:53.000Z","author":{"@type":"Person","name":"SJ Zhou"},"publisher":{"@type":"Organization","name":"morooi's Blog - morooi 的个人展示🍓","logo":{"@type":"ImageObject","url":{"text":"morooi's Blog"}}},"description":"本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。 下载地址：  VMware Workstation Pro"}</script><link rel="canonical" href="https://morooi.com/2019/installhadoop/"><link rel="icon" href="/img/icon-32x32.png"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.lug.ustc.edu.cn/css2?family=Lato:wght@400"><link data-pjax rel="stylesheet" href="/css/default.css"><!--!--><script>var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?15cece15ce32e027e81c277a94bbd778";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();</script><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-0T8JD2VS0K" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-0T8JD2VS0K');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">morooi&#039;s Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">全部文章</a><a class="navbar-item" href="/categories">分类</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/morooi"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-03-26T12:49:49.000Z" title="3/26/2019, 8:49:49 PM">2019-03-26</time>发表</span><span class="level-item"><time dateTime="2021-01-06T10:32:53.000Z" title="1/6/2021, 6:32:53 PM">2021-01-06</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></span><span class="level-item">13 分钟读完 (大约1919个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">在 CentOS 7 中安装 Hadoop 与 HBase</h1><div class="content"><p>本实验在 VMware 虚拟机中安装 CentOS 系统，搭建 Hadoop 伪分布式模式环境，安装 HBase。实验必要的环境，包括：VMware Workstation Pro 15, CentOS 7.6.1810, Java SE Development Kit 8u201, Hadoop 2.9.2, HBase 1.4.9。</p>
+<p>下载地址：</p>
+<ul>
+<li>VMware Workstation Pro 15：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1LO6DxDw71vecyfvsJXv1jA">https://pan.baidu.com/s/1LO6DxDw71vecyfvsJXv1jA</a> 提取码: 98kc </li>
+<li>CentOS：<a target="_blank" rel="noopener" href="http://mirrors.tuna.tsinghua.edu.cn/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso">CentOS-7-x86_64-Minimal-1810.iso</a></li>
+<li>Java SDK：<a target="_blank" rel="noopener" href="https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz">jdk-8u201-linux-x64.tar.gz</a></li>
+<li>Hadoop：<a target="_blank" rel="noopener" href="http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.9.2/hadoop-2.9.2.tar.gz">hadoop-2.9.2.tar.gz</a></li>
+<li>HBase：<a target="_blank" rel="noopener" href="http://mirrors.tuna.tsinghua.edu.cn/apache/hbase/1.4.9/hbase-1.4.9-bin.tar.gz">hbase-1.4.9-bin.tar.gz</a></li>
+</ul>
+<p>本报告一共分为四个部分</p>
+<ul>
+<li>第一部分：在 VMware 中安装 CentOS</li>
+<li> 第二部分：安装 Java，并配置环境变量</li>
+<li>第三部分：安装并配置 Hadoop（伪分布式模式）</li>
+<li>第四部分：安装并配置 HBase</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="第一部分：在VMware中安装CentOS"><a href="#第一部分：在VMware中安装CentOS" class="headerlink" title="第一部分：在VMware中安装CentOS"></a>第一部分：在 VMware 中安装 CentOS</h2><p>安装完成后使用 SSH 客户端连接到虚拟机。</p>
+<p>由于写此报告时已经安装完成，并没有将过程截图，此部分略。</p>
+<p>设置 CentOS 的部分命令（均使用 root 用户执行）：</p>
+<ol>
+<li><p>关闭防火墙：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl stop firewalld.service  <span class="comment">#停止firewall</span></span><br><span class="line">$ systemctl <span class="built_in">disable</span> firewalld.service    <span class="comment">#禁止firewall开机启动</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>关闭 selinux：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /etc/sysconfig/selinux</span><br></pre></td></tr></tbody></table></figure>
+
+<p>修改 <code>SELINUX=enabled</code> 为 <code>SELINUX=disabled</code>，如图</p>
+<p><img src="/.com//selinux.png" alt="关闭selinux"></p>
+</li>
+</ol>
+<h2 id="第二部分：安装Java，并配置环境变量"><a href="#第二部分：安装Java，并配置环境变量" class="headerlink" title="第二部分：安装Java，并配置环境变量"></a>第二部分：安装 Java，并配置环境变量</h2><h3 id="安装Java"><a href="#安装Java" class="headerlink" title="安装Java"></a>安装 Java</h3><p>进入实验目录，这里选择在 <code>/opt/app</code> 目录下，下载 Java SDK 安装包</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> /opt/app</span><br><span class="line">$ wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz</span><br></pre></td></tr></tbody></table></figure>
+
+<p>使用如下命令解压：<code>tar zxvf ./jdk-8u201-linux-x64.tar.gz</code>，得到目录 <code>/opt/app/jdk1.8.0_201</code>。</p>
+<h3 id="添加环境变量"><a href="#添加环境变量" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>修改配置文件，执行 <code>vim /etc/profile</code>，在尾部添加</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="string">"/opt/app/jdk1.8.0_201"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>如图</p>
+<p><img src="/.com//JAVA_HOME.png" alt="添加JAVA环境变量"></p>
+<p>修改完毕后，执行命令 <code>source /etc/profile</code> 使其生效。</p>
+<p>执行命令 <code>java -version</code>，看到下图，即为安装成功</p>
+<p><img src="/.com//java_version.png" alt="安装Java成功"></p>
+<h2 id="第三部分：安装并配置Hadoop（伪分布式模式）"><a href="#第三部分：安装并配置Hadoop（伪分布式模式）" class="headerlink" title="第三部分：安装并配置Hadoop（伪分布式模式）"></a>第三部分：安装并配置 Hadoop（伪分布式模式）</h2><h3 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装 Hadoop</h3><p>下载 Hadoop 2.9.2 安装包</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.9.2/hadoop-2.9.2.tar.gz</span><br></pre></td></tr></tbody></table></figure>
+
+<p>使用如下命令解压：<code>tar zxvf ./hadoop-2.9.2.tar.gz</code>，得到目录 <code>/opt/app/hadoop-2.9.2</code>。</p>
+<h3 id="添加环境变量-1"><a href="#添加环境变量-1" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>修改配置文件，执行 <code>vim /etc/profile</code>，在尾部添加</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HADOOP_HOME=<span class="string">"/opt/app/hadoop-2.9.2"</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$HADOOP_HOME</span>/bin:<span class="variable">$HADOOP_HOME</span>/sbin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>如图</p>
+<p><img src="/.com//HADOOP_HOME.png" alt="添加Hadoop环境变量"></p>
+<p>修改完毕后，执行 <code>source /etc/profile</code> 使其生效。</p>
+<p>执行 <code>hadoop version</code>，看到下图，即为安装成功</p>
+<p><img src="/.com//hadoop_version.png" alt="安装Hadoop成功"></p>
+<h3 id="配置Hadoop"><a href="#配置Hadoop" class="headerlink" title="配置Hadoop"></a>配置 Hadoop</h3><ol>
+<li><p><strong>修改 <code>hadoop-env.sh</code></strong></p>
+<p>执行命令</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hadoop-2.9.2/etc/hadoop/hadoop-env.sh</span><br></pre></td></tr></tbody></table></figure>
+
+<p>修改文件中的 <code>JAVA_HOME</code> 参数为 Java 安装路径，结果如图</p>
+<p><img src="/.com//hadoop-env.png" alt="配置hadoop-env.sh"></p>
+</li>
+<li><p><strong>配置 <code>core-site.xml</code></strong></p>
+<p>执行命令</p>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hadoop-2.9.2/etc/hadoop/core-site.xml</span><br></pre></td></tr></tbody></table></figure>
+
+<p>添加如下配置</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://192.168.29.127:8020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/opt/data/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>其中</p>
+<p><code>fs.defaultFS</code> 参数配置的是 HDFS 的地址，<code>192.168.29.127</code> 为本虚拟机 IP 地址。</p>
+<p><code>hadoop.tmp.dir</code> 参数配置的是 Hadoop 临时目录，这里设置为 <code>/opt/data/tmp</code>，并手动创建此目录。</p>
+<p><img src="/.com//core-site.png" alt="配置core-site.xml"></p>
+</li>
+<li><p><strong>配置 <code>hdfs-site.xml</code></strong></p>
+<p>执行命令</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hadoop-2.9.2/etc/hadoop/hdfs-site.xml</span><br></pre></td></tr></tbody></table></figure>
+
+<p>添加如下配置</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>dfs.replication</code> 参数配置的是 HDFS 存储时的备份数量，因为这里是伪分布式环境只有一个节点，所以这里设置为 1。</p>
+<p><img src="/.com//hdfs-site.png" alt="配置hdfs-site.xml"></p>
+</li>
+<li><p><strong>格式化 HDFS</strong></p>
+<p>执行命令 <code>hdfs namenode -format</code>，当配置文件中设置的临时目录 <code>/opt/data/tmp</code> 下出现 <code>dfs</code> 文件夹时，说明格式化成功。</p>
+<p><img src="/.com//format.png" alt="格式化过程"></p>
+</li>
+<li><p><strong>配置 <code>mapred-site.xml</code></strong></p>
+<p>默认没有 <code>mapred-site.xml</code> 文件，从 <code>mapred-site.xml.template</code> 模板文件复制生成 <code>mapred-site.xml</code>。</p>
+<p>在 Hadoop 目录下执行命令</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cp</span> etc/hadoop/mapred-site.xml.template etc/hadoop/mapred-site.xml</span><br></pre></td></tr></tbody></table></figure>
+
+<p>打开 <code>mapred-site.xml</code>，添加如下配置</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>此处设置 <code>mapreduce.framework.name</code> 参数指定 mapreduce 运行在 yarn 框架上。</p>
+<p><img src="/.com//mapred-site.png" alt="配置mapred-site.xml"></p>
+</li>
+<li><p><strong>配置 <code>yarn-site.xml</code></strong></p>
+<p>执行命令</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hadoop-2.9.2/etc/hadoop/yarn-site.xml</span><br></pre></td></tr></tbody></table></figure>
+
+<p>添加如下配置</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>192.168.29.127<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>yarn.nodemanager.aux-services</code> 配置了 yarn 的默认混洗方式，选择为 mapreduce 的默认混洗算法。</p>
+<p><code>yarn.resourcemanager.hostname</code> 指定了 Resourcemanager 运行在哪个节点上，此处为本虚拟机 IP。</p>
+<p><img src="/.com//yarn-site.png" alt="配置yarn-site.xml"></p>
+</li>
+</ol>
+<h3 id="设置免密登录"><a href="#设置免密登录" class="headerlink" title="设置免密登录"></a>设置免密登录</h3><blockquote>
+<p>关于免密登录详细的可以查看 <a href="/2019/linux/">Linux 笔记</a></p>
+</blockquote>
+<p>通常 Hadoop 集群中的各个机器间会相互地通过 SSH 访问，每次访问都输入密码是不现实的，所以要配置免密登录。</p>
+<p>这里是伪分布式的，所以只给本机配置就 OK 了。</p>
+<ol>
+<li><p>在本机上生成公钥</p>
+<p>执行命令</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa</span><br></pre></td></tr></tbody></table></figure>
+
+<p>一路回车，都设置为默认值，然后再当前用户的目录下的<code>.ssh</code> 目录中会生成公钥文件 <code>id_rsa.pub</code> 和私钥文件 <code>id_rsa</code>。</p>
+<p><img src="/.com//ssh.png" alt=".ssh"></p>
+</li>
+<li><p>分发公钥</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-copy-id 192.168.29.127 <span class="comment">## 后面填写目的地址，此处是本机IP</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<p>至此，开启和关闭 Hadoop 服务都无需输入密码。</p>
+<h3 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动 Hadoop</h3><p>在 Hadoop 目录下执行命令 <code>sbin/start-all.sh</code>，开始启动 Hadoop</p>
+<p><img src="/.com//start-all.png" alt="启动Hadoop"></p>
+<p>运行命令 <code>jps</code> 可以看到服务均开始运行</p>
+<p><img src="/.com//jps.png" alt="jps"></p>
+<p>进入 <a target="_blank" rel="noopener" href="http://192.168.27.127:50070/">http://192.168.27.127:50070</a> ，可以看到 Namenode 状态为 “active”。</p>
+<p><img src="/.com//50070.png" alt="active"></p>
+<h3 id="Hadoop指定SSH连接的端口号"><a href="#Hadoop指定SSH连接的端口号" class="headerlink" title="Hadoop指定SSH连接的端口号"></a>Hadoop 指定 SSH 连接的端口号</h3><p>当因为某些原因自定义 <code>SSH</code> 端口号的时候，使用以下方法告诉 Hadoop 你的 <code>SSH</code> 端口号。</p>
+<p>编辑 Hadoop 目录下 <code>/etc/hadoop/hadoop-env.sh</code>，添加</p>
+<figure class="highlight sh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HADOOP_SSH_OPTS=<span class="string">"-p xxx"</span> //xxx为自定义的SSH端口号</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="第四部分：安装并配置HBase"><a href="#第四部分：安装并配置HBase" class="headerlink" title="第四部分：安装并配置HBase"></a>第四部分：安装并配置 HBase</h2><h3 id="安装HBase"><a href="#安装HBase" class="headerlink" title="安装HBase"></a>安装 HBase</h3><p>下载 HBase 1.4.9 安装包</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://mirrors.tuna.tsinghua.edu.cn/apache/hbase/1.4.9/hbase-1.4.9-bin.tar.gz</span><br></pre></td></tr></tbody></table></figure>
+
+<p>使用如下命令解压：<code>tar zxvf hbase-1.4.9-bin.tar.gz</code>，得到目录 <code>/opt/app/hbase-1.4.9</code>。</p>
+<h3 id="添加环境变量-2"><a href="#添加环境变量-2" class="headerlink" title="添加环境变量"></a>添加环境变量</h3><p>修改配置文件，执行 <code>vim /etc/profile</code>，在尾部添加</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HBASE_HOME=/opt/app/hbase-1.4.9</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$HBASE_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>如图</p>
+<p><img src="/.com//HBASE_HOME.png" alt="添加HBASE环境变量"></p>
+<p>修改完毕后，执行 <code>source /etc/profile</code> 使其生效。</p>
+<p>执行 <code>hbase version</code>，看到下图，即为安装成功</p>
+<p><img src="/.com//hbase_version.png" alt="安装HBase成功"></p>
+<h3 id="配置HBase"><a href="#配置HBase" class="headerlink" title="配置HBase"></a>配置 HBase</h3><ol>
+<li><p><strong>配置 <code>hbase-site.xml</code></strong></p>
+<p>执行命令</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hbase-1.4.9/conf/hbase-site.xml</span><br></pre></td></tr></tbody></table></figure>
+
+<p>添加如下配置</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.rootdir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://192.168.29.127:8020/hbase<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/opt/data/hbase/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hbase.cluster.distributed<span class="tag">&lt;/<span class="name">name</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>hbase.rootdir</code> 配置的这个目录是 region server 的共享目录，用来持久化 HBase。</p>
+<p><code>hbase.tmp.dir</code> 指定了 HBase 的临时目录。</p>
+<p><code>hbase.cluster.distributed</code> 配置 HBase 的运行模式，false 是单机模式，true 是分布式模式。</p>
+<p><img src="/.com//HBase_site.png" alt="Hbase-site"></p>
+</li>
+<li><p><strong>配置 <code>hbase-env.sh</code></strong></p>
+<p> 执行命令</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /opt/app/hbase-1.4.9/conf/hbase-env.sh</span><br></pre></td></tr></tbody></table></figure>
+
+<p> 添加如下配置</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/opt/app/jdk1.8.0_201</span><br><span class="line"><span class="built_in">export</span> HADOOP_HOME=/opt/app/hadoop-2.9.2</span><br><span class="line"><span class="built_in">export</span> HBASE_HOME=/opt/app/hbase-1.4.9</span><br><span class="line"><span class="built_in">export</span> HBASE_CLASSPATH=/opt/app/hadoop-2.9.2/etc/hadoop</span><br></pre></td></tr></tbody></table></figure>
+
+<p> <img src="/.com//HBase-env.png" alt="Hbase-env"></p>
+</li>
+</ol>
+<h3 id="启动HBase"><a href="#启动HBase" class="headerlink" title="启动HBase"></a>启动 HBase</h3><blockquote>
+<p>在启动 HBase 前先启动 Hadoop</p>
+</blockquote>
+<p>在 HBase 目录下执行命令 <code>bin/start-hbase.sh</code>，看到以下状态</p>
+<p><img src="/.com//start-hbase.png" alt="start-hbase"></p>
+<p>查看 Java 进程：<code>jps</code></p>
+<p><img src="/.com//jps_hbase.png" alt="jps-hbase"></p>
+<p>可以看到 <code>HMaster</code> 进程已经启动了。<br><br></p>
+<p><strong>至此，Hadoop 和 HBase 在 CentOS 7 上的安装已全部完成。</strong></p>
+</div><div class="article-licensing box"><div class="licensing-title"><p>在 CentOS 7 中安装 Hadoop 与 HBase</p><p><a href="https://morooi.com/2019/installhadoop/">https://morooi.com/2019/installhadoop/</a></p></div><div class="licensing-meta level is-mobile"><div class="level-left"><div class="level-item is-narrow"><div><h6>作者</h6><p>SJ Zhou</p></div></div><div class="level-item is-narrow"><div><h6>发布于</h6><p>2019-03-26</p></div></div><div class="level-item is-narrow"><div><h6>更新于</h6><p>2021-01-06</p></div></div><div class="level-item is-narrow"><div><h6>许可协议</h6><p><a class="icons" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="icon fab fa-creative-commons"></i></a><a class="icons" rel="noopener" target="_blank" title="Attribution" href="https://creativecommons.org/licenses/by/4.0/"><i class="icon fab fa-creative-commons-by"></i></a><a class="icons" rel="noopener" target="_blank" title="Noncommercial" href="https://creativecommons.org/licenses/by-nc/4.0/"><i class="icon fab fa-creative-commons-nc"></i></a></p></div></div></div></div></div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/CentOS/">CentOS</a><a class="link-muted mr-2" rel="tag" href="/tags/Hadoop/">Hadoop</a><a class="link-muted mr-2" rel="tag" href="/tags/HBase/">HBase</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2019/startx/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">给 CentOS 7 minimal 安装图形界面</span></a></div></nav><div class="card" id="comments"><div class="card-content"><h3 class="title is-5">评论</h3><div id="comment-container"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css"><script src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script>var gitalk = new Gitalk({
+            id: "d9b032eac31f9b94d67f03fb6d752816",
+            repo: "morooi.github.io",
+            owner: "morooi",
+            clientID: "5f226401a110e7b4a6bc",
+            clientSecret: "61c075c74df925c0ee95072d8d649dad5eb5587e",
+            admin: ["morooi"],
+            createIssueManually: false,
+            distractionFreeMode: false,
+            perPage: 10,
+            pagerDirection: "last",
+            
+            
+            enableHotKey: true,
+            
+        })
+        gitalk.render('comment-container')</script></div></div></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/avatar.jpg" alt="morooi"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">morooi</p><p class="is-size-6 is-block">morooi&#039;s Blog</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">24</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">36</p></a></div></div></nav><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/morooi"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Twitter" href="https://twitter.com/morooi_"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Telegram" href="https://t.me/morooi"><i class="fab fa-telegram"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Weibo" href="https://weibo.com/zhoushaojing"><i class="fab fa-weibo"></i></a></div></div></div><div class="card widget is-sticky" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#第一部分：在VMware中安装CentOS"><span class="level-left"><span class="level-item">第一部分：在 VMware 中安装 CentOS</span></span></a></li><li><a class="level is-mobile" href="#第二部分：安装Java，并配置环境变量"><span class="level-left"><span class="level-item">第二部分：安装 Java，并配置环境变量</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#安装Java"><span class="level-left"><span class="level-item">安装 Java</span></span></a></li><li><a class="level is-mobile" href="#添加环境变量"><span class="level-left"><span class="level-item">添加环境变量</span></span></a></li></ul></li><li><a class="level is-mobile" href="#第三部分：安装并配置Hadoop（伪分布式模式）"><span class="level-left"><span class="level-item">第三部分：安装并配置 Hadoop（伪分布式模式）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#安装Hadoop"><span class="level-left"><span class="level-item">安装 Hadoop</span></span></a></li><li><a class="level is-mobile" href="#添加环境变量-1"><span class="level-left"><span class="level-item">添加环境变量</span></span></a></li><li><a class="level is-mobile" href="#配置Hadoop"><span class="level-left"><span class="level-item">配置 Hadoop</span></span></a></li><li><a class="level is-mobile" href="#设置免密登录"><span class="level-left"><span class="level-item">设置免密登录</span></span></a></li><li><a class="level is-mobile" href="#启动Hadoop"><span class="level-left"><span class="level-item">启动 Hadoop</span></span></a></li><li><a class="level is-mobile" href="#Hadoop指定SSH连接的端口号"><span class="level-left"><span class="level-item">Hadoop 指定 SSH 连接的端口号</span></span></a></li></ul></li><li><a class="level is-mobile" href="#第四部分：安装并配置HBase"><span class="level-left"><span class="level-item">第四部分：安装并配置 HBase</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#安装HBase"><span class="level-left"><span class="level-item">安装 HBase</span></span></a></li><li><a class="level is-mobile" href="#添加环境变量-2"><span class="level-left"><span class="level-item">添加环境变量</span></span></a></li><li><a class="level is-mobile" href="#配置HBase"><span class="level-left"><span class="level-item">配置 HBase</span></span></a></li><li><a class="level is-mobile" href="#启动HBase"><span class="level-left"><span class="level-item">启动 HBase</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Linux-%E4%BD%BF%E7%94%A8/"><span class="level-start"><span class="level-item">Linux 使用</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"><span class="level-start"><span class="level-item">大数据</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">学习笔记</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E8%AE%B0%E5%BD%95/"><span class="level-start"><span class="level-item">记录</span></span><span class="level-end"><span class="level-item tag">9</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2021-01-05T06:15:06.000Z">2021-01-05</time></p><p class="title"><a href="/2021/acme-sh/">使用 acme.sh 自动签发 ZeroSSL 的 ECC 证书</a></p><p class="categories"><a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-12-21T11:38:58.000Z">2020-12-21</time></p><p class="title"><a href="/2020/FixPD16/">解决 Parallels Desktop 16 by TNT 网络初始化失败的问题</a></p><p class="categories"><a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-12-01T13:49:44.000Z">2020-12-01</time></p><p class="title"><a href="/2020/docker-maven/">使用 dockerfile-maven-plugin 插件构建并推送 Docker 镜像</a></p><p class="categories"><a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-08-16T08:05:01.000Z">2020-08-16</time></p><p class="title"><a href="/2020/Java-%E9%9D%A2%E8%AF%95/">一些容易忘掉的知识点 - Java</a></p><p class="categories"><a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2020-07-13T11:34:37.000Z">2020-07-13</time></p><p class="title"><a href="/2020/%E6%90%AD%E5%BB%BADNS%E6%9C%8D%E5%8A%A1%E5%99%A8/">使用 Docker 自建支持 DoH、DoT 的 DNS 服务器</a></p><p class="categories"><a href="/categories/%E8%AE%B0%E5%BD%95/">记录</a></p></div></article></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">morooi&#039;s Blog</a><p class="is-size-7"><span>&copy; 2024 SJ Zhou</span>  <a target="_blank" href="https://beian.miit.gov.cn/">沪 ICP 备 2022003363 号</a><br>Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">本网站由 <a href="https://cloud.tencent.com/product/cdn" target="_blank"><img src="/img/tencentcdn_logo.svg" style="height:15px;display:inline"></a>、<a href="https://www.cloudflare.com/cdn" target="_blank"><img src="/img/cloudflare_logo.svg" style="height:15px;display:inline"></a> 提供 CDN 加速服务</p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
